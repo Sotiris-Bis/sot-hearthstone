@@ -1,0 +1,444 @@
+<template>
+  <div class="container">
+    <h3>Type a deck code to get the cards</h3>
+    <form>
+      <input type="text" v-model="search" />
+      <br />
+      <button class="bg-transparent" type="submit" @click.prevent="get">Search</button>
+    </form>
+    <br />
+
+    <b-container>
+      <b-row>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Demonhunter</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Demonhunter</b-card-title>
+              <b-card-sub-title class="mb-2">6th February 2021</b-card-sub-title>
+              <b-card-text>
+                Crazy tempo, <br /> 
+                fun and fast
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAea5AxiVzQPUyAPH3QPz4wPM0gOdwgKLugO0xAL+0QOHugPYuwPHxgPX3gPwwgLV3gPdzAP04wOczQOTzQPM3QOqsgLivgPr9gLv1QMD6uEDueED28wDAA==`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/Capture1.jpg')" alt="Image" bottom class="zoom" fluid-grow="true"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Paladin</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Paladin</b-card-title>
+              <b-card-sub-title class="mb-2">17th March 2021</b-card-sub-title>
+              <b-card-text>
+                Hammer of the Naaru... <br />
+                and an other one please
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAZ8FFtj+At0K374D/geR5AOz3gP63gP+0QPK4wOl9QLK0QORswL03wOz3AP6AY3hA/AD2cICuuED4r4D28wD6L4DBMrDAuH+AqzCAoXeAwA=`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/paladin1.jpg')" alt="Image" bottom class="zoom"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Warrior</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Warrior</b-card-title>
+              <b-card-sub-title class="mb-2">1st April 2021</b-card-sub-title>
+              <b-card-text>
+                No spells, <br />
+                No problem.
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAQcWq9QDh78CkQaS0AOVzQPizAOfzQP6BfPeA8bDAorQA6e%2BAvnoA5boA9m%2BA%2BS%2BA7m%2FAr2YA9zbA%2BrhA%2Bi%2BA4zUAwSnzgOonwTy6QPV8QMA`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/tseris2.jpg')" alt="Image" bottom class="zoom"></b-card-img>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
+        <hr />
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Demonhunter</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Demonhunter</b-card-title>
+              <b-card-sub-title class="mb-2">09th April 2021</b-card-sub-title>
+              <b-card-text>
+                Too fast, too furius...
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getDeckWithTriples(
+                    [
+                      59394,
+                      61127,
+                      57182,
+                      61939,
+                      52866,
+                      58495,
+                      56820,
+                      56820,
+                      59259,
+                      56391,
+                      59914,
+                      61273,
+                      61133,
+                      63726,
+                      62585,
+                      62482,
+                      69716,
+                      56860,
+                      62548,
+                      62548,
+                      62548,
+                      40289,
+                      52418,
+                      61129,
+                      61674,
+                      59027,
+                      61132,
+                      61626,
+                      57176,
+                      58455
+                    ],
+                    'Demonhunter'
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/napo1.jpg')" alt="Image" bottom class="zoom"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Shaman</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Shaman</b-card-title>
+              <b-card-sub-title class="mb-2">14th April 2021</b-card-sub-title>
+              <b-card-text>
+                kill em all
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getDeckWithTriples(
+                    [
+                      62442,
+                      61226,
+                      60043,
+                      52935,
+                      62703,
+                      58790,
+                      57174,
+                      62481,
+                      56411,
+                      56411,
+                      56411,
+                      69725,
+                      61224,
+                      61227,
+                      57177,
+                      60979,
+                      62745,
+                      63508,
+                      59553,
+                      63380,
+                      52278,
+                      69899,
+                      57180,
+                      40700,
+                      68333,
+                      59916,
+                      61670,
+                      51722,
+                      61629,
+                      61629
+                    ],
+                    'Shaman'
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/Shaman1.jpg')" alt="Image" bottom class="zoom"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Warrior</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Warrior</b-card-title>
+              <b-card-sub-title class="mb-2">28th April 2021</b-card-sub-title>
+              <b-card-text>
+                by Mortician, with love...
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAQcY4swDh78Cn58EwZgDmZQD8J4D3b4DjaAE+bwCz78CkKAE++gD8ukD/+cD2b4D5L4D6uED5b4Dh5oD6L4D5uEDoJ4Dq9QDtIoEA7y5A4ygBI7tAwA=`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/tseris-warrior-1.jpg')" alt="Image" bottom class="zoom"></b-card-img>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
+        <hr />
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Shaman</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Shaman</b-card-title>
+              <b-card-sub-title class="mb-2">9th May 2021</b-card-sub-title>
+              <b-card-text>
+                Keymaster Alabaster...
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAaoIForkA97EAt++A9e+A5HkA/sBioADtuEDt6wDx+ED/58E5r4DlrkDmeoDodED/p8E+58Ek80D5b4D4r4D9t0DrZEDBP2fBJi5A4zUA9i+AwA=`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/napo-shaman1.jpg')" alt="Image" bottom class="zoom" fluid-grow="true"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col> 
+          <b-card no-body style="max-width: 20rem;" class="bg-transparent">
+            <template #header>
+              <h4 class="mb-0">Warrior</h4>
+            </template>
+
+            <b-card-body>
+              <b-card-title>Warrior</b-card-title>
+              <b-card-sub-title class="mb-2">25th May 2021</b-card-sub-title>
+              <b-card-text>
+                Grommash + Ysera = Flawless
+              </b-card-text>
+            </b-card-body>
+
+            <b-card-body>
+              <button
+                class="bg-transparent"
+                @click="
+                  getMyDeck(
+                    `AAEBAQca4swD174DmO0DtJEDtt4D/tEDx+EDjgXWvgPmvgPcD/kM8t4Dju0DS+3pA0SM1APImAOcuwPYvgPm4QPSAqzUA6CeA7SKBAK8uQO13gMA`
+                  )
+                "
+              >
+                <span v-if="!loaded">Show Full Deck</span>
+                <span v-else>Hide Deck</span>
+              </button>
+            </b-card-body>
+            <b-card-img :src="require('../assets/warriorFlawless1.jpg')" alt="Image" bottom class="zoom" fluid-grow="true"></b-card-img>
+          </b-card>
+        </b-col>
+        <b-col> </b-col>
+      </b-row>
+      <b-row>
+        <hr />
+      </b-row>
+    </b-container>
+    <hr />
+    <b-container v-if="loaded">
+      <h2>{{ hero.name }}</h2>
+      <h4>Format: {{ format.toUpperCase() }}</h4>
+
+      <b-container fluid class="p-4">
+        <b-img v-for="(card, index) in sortFunc()" :key="index" :src="card.image" :alt="card.name" height="414" width="300" class="zoom" />
+      </b-container>
+      <b-row>
+        <hr />
+      </b-row>
+      <b-row>
+        <hr />
+      </b-row>
+      <b-row>
+        <hr />
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'DeckSearch',
+  data() {
+    return {
+      search: '',
+      cards: [],
+      deckCode: '',
+      hero: {},
+      format: '',
+      loaded: false
+    };
+  },
+  methods: {
+    get() {
+      const token = this.$store.state.oauth.accessToken;
+      const code = this.search;
+      if (code != '') {
+        axios
+          .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=en_US&code=${code}&access_token=${token}`)
+          .then(res => {
+            this.loaded = !this.loaded;
+            this.cards = res.data.cards;
+            this.deckCode = res.data.deckCode;
+            this.hero = res.data.hero;
+            this.format = res.data.format;
+          })
+          .catch(error => {
+            const notification = {
+              type: 'error',
+              message: 'There was an error retrieving your deck ' + error.message
+            };
+            this.$store.dispatch('addNotification', notification, { root: true });
+            throw error;
+          });
+      }
+    },
+    getMyDeck(deck) {
+      const token = this.$store.state.oauth.accessToken;
+      axios
+        .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=en_US&code=${deck}&access_token=${token}`)
+        .then(res => {
+          this.loaded = !this.loaded;
+          this.cards = res.data.cards;
+          this.deckCode = res.data.deckCode;
+          this.hero = res.data.hero;
+          this.format = res.data.format;
+        })
+        .catch(error => {
+          const notification = {
+            type: 'error',
+            message: 'There was an error retrieving your deck ' + error.message
+          };
+          this.$store.dispatch('addNotification', notification, { root: true });
+          throw error;
+        });
+    },
+    sortFunc: function() {
+      return this.cards.slice().sort(function(a, b) {
+        return a.manaCost > b.manaCost ? 1 : -1;
+      });
+    },
+    getDeckWithTriples(deck, name) {
+      const token = this.$store.state.oauth.accessToken;
+
+      let deckCards = [];
+      for (let i = 0; i <= deck.length - 1; i++) {
+        axios.get(`https://us.api.blizzard.com/hearthstone/cards/${deck[i]}?locale=en_US&access_token=${token}`).then(res => {
+          deckCards.push(res.data);
+        });
+      }
+      this.loaded = !this.loaded;
+      this.cards = deckCards;
+      this.deckCode = 'No cade due to triplets';
+      this.hero.name = name;
+      this.format = 'Wild';
+    }
+  }
+};
+</script>
+<style scoped>
+.zoom:hover {
+  transform: scale(1.5);
+}
+</style>
+AAEBAQca4swD174DmO0DtJEDtt4D/tEDx+EDjgXWvgPmvgPcD/kM8t4Dju0DS+3pA0SM1APImAOcuwPYvgPm4QPSAqzUA6CeA7SKBAK8uQO13gMA

@@ -1,0 +1,83 @@
+#app {
+    font-family: Sans-Serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    min-height: 120vh;
+    font-size: 18px;
+    overflow-x: scroll;
+  }
+  .-text-success {
+    color: blue;
+  }
+  .-text-base {
+    color: #000;
+  }
+  .-text-error {
+    color: red;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  .dark {
+    background: #202945;
+    color: #ffffff;
+  } 
+  .dark button {
+    color: #ffffff;
+  }
+  .dark router-link * {
+    color: #000000;
+  }
+  .dark a * {
+    color: #000000;
+  }
+  .dark b-table {
+    color:#ffffff;
+  }
+  .light {
+    background: #cbd8ff;
+    color: #000000;
+  }
+  .light router-link * {
+    color: #000000;
+  }
+  .light a * {
+    color: #000000;
+  }
+  .input {
+    background: transparent;
+  }
+  .dark select {
+    color: #ffffff;
+  }
+  .light select {
+    color: #000000;
+  }
+  .select {
+    max-width: 35vw;
+  }
+  
+  .form-group input:focus {
+    background: transparent;
+  }
+  .table input:focus {
+    background: transparent;
+  }
+  textarea.form-control:focus {
+    background: transparent;
+  }
+  /*** TRANSITIONS ***/
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease-out;
+  }
+  .fade-leave-to {
+    opacity: 0;
+  }
+  

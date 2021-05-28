@@ -4,9 +4,7 @@ import Home from '../views/Home.vue';
 import DeckSearch from '../views/DeckSearch.vue';
 import AllCardsView from '../views/AllCardsView.vue';
 import Arena3 from '../views/Arena3.vue';
-//import newArena from '../views/newArena.vue';
 import AllCards from '../views/AllCards.vue';
-// import PerDeck from '../views/PerDeck.vue';
 import NotFound from '../components/NotFound.vue';
 import Error from '../views/Error.vue';
 import Battlegrounds from '../views/Battlegrounds.vue';
@@ -44,21 +42,6 @@ const routes = [
     name: 'Battlegrounds',
     component: Battlegrounds
   },
-  // {
-  //   path: '/per_deck',
-  //   name: 'PerDeck',
-  //   component: PerDeck
-  // },
-  // {
-  //   path: '/newarena',
-  //   name: 'newArena',
-  //   component: newArena
-  // },
-  // {
-  //   path: '/ArenaCardsFromDecks',
-  //   name: 'ArenaCardsFromDecks',
-  //   component: ArenaCardsFromDecks
-  // },
   {
     path: '*',
     name: 'not-found',

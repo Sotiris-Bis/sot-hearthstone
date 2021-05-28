@@ -216,10 +216,6 @@
                   </b-card>
                 </b-card-group>
               </div>
-              <!-- <div v-for="hero in heroes" :key="hero.id">
-              <b-img-lazy  :src="hero.battlegrounds.image" width="150" height="100" class="zoom" :alt="hero.name"></b-img-lazy>
-              <span>{{hero.name}}</span>
-            </div> -->
               <br />
             </b-container>
           </b-card-text>
@@ -377,10 +373,8 @@ export default {
         state.axiosFetch.battleCards.sort((a, b) => {
           return a.battlegrounds.tier - b.battlegrounds.tier;
         }),
-      sets: state => state.axiosFetch.sets,
       heroes: state => state.axiosFetch.battlegroundHeroes,
-      minionTypes: state => state.axiosFetch.minionTypes,
-      rarities: state => state.axiosFetch.rarities
+      minionTypes: state => state.axiosFetch.minionTypes
     }),
 
     totalSpells() {

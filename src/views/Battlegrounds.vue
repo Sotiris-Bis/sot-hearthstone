@@ -2,14 +2,14 @@
   <b-container fluid>
     <b-card no-body class="transparent">
       <b-tabs vertical active-nav-item-class="font-weight-bold bg-transparent">
-        <b-tab title="Minions" active
-          ><b-card-text>
+        <b-tab title="Minions" active>
+          <b-card-text>
             <b-container fluid id="filterSection">
-              <label for="filterSection">The filter section</label>
+              <label for="filterSection">Filters</label>
               <b-list-group horizontal="lg">
                 <b-list-group-item class="transparent">
                   <label for="filterTermName">Name </label>
-                  <input
+                  <b-input
                     type="text"
                     v-model="filterTermName"
                     id="filterTermName"
@@ -20,7 +20,7 @@
                 </b-list-group-item>
                 <b-list-group-item class="transparent">
                   <label for="filterTermMinionType">Minion type </label>
-                  <select
+                  <b-select
                     v-model="filterTermMinionType"
                     id="filterTermMinionType"
                     class="select transparent"
@@ -32,11 +32,11 @@
                     <option v-for="option in minionTypes" :key="option.id" :value="option.id">
                       {{ option.name }}
                     </option>
-                  </select>
+                  </b-select>
                 </b-list-group-item>
                 <b-list-group-item class="transparent">
                   <label for="filterTermTier">Tier</label>
-                  <select
+                  <b-select
                     v-model="filterTermTier"
                     id="filterTermTier"
                     class="select transparent"
@@ -50,7 +50,18 @@
                     <option value="4">Tier 4</option>
                     <option value="5">Tier 5</option>
                     <option value="6">Tier 6</option>
-                  </select>
+                  </b-select>
+                </b-list-group-item>
+                <b-list-group-item class="transparent">
+                  <label for="view">Toggle view</label>
+                  <div id="view">
+                    <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover title="Table View">
+                      <b-icon icon="grid3x3-gap" aria-hidden="true" :variant="variantTogle"></b-icon>
+                    </b-button>
+                    <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover title="Card View">
+                      <b-icon icon="images" aria-hidden="true" :variant="variantTogle2"></b-icon>
+                    </b-button>
+                  </div>
                 </b-list-group-item>
               </b-list-group>
             </b-container>
@@ -85,7 +96,7 @@
               </div>
               <hr />
             </b-container>
-            <b-container fluid>
+            <b-container fluid v-if="tableView">
               <b-row>
                 <b-col sm="5" md="6" class="my-1">
                   <b-form-group
@@ -113,13 +124,43 @@
                   <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
                   <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
                 </b-col>
+                <b-col>
+                  <b-dropdown
+                    id="asd"
+                    split
+                    split-variant="outline-dark"
+                    variant="outline-dark"
+                    text="Table columns"
+                    class="m-2 transparent"
+                    size="sm"
+                  >
+                    <b-dropdown-form>
+                      <b-form-checkbox v-model="fields[0].show" switch>
+                        Name
+                      </b-form-checkbox>
+                      <b-form-checkbox v-model="fields[1].show" switch disabled>
+                        Image
+                      </b-form-checkbox>
+                      <b-form-checkbox v-model="fields[2].show" switch>
+                        Text
+                      </b-form-checkbox>
+                      <b-form-checkbox v-model="fields[3].show" switch>
+                        Type
+                      </b-form-checkbox>
+                      <b-form-checkbox v-model="fields[4].show" switch>
+                        Tier
+                      </b-form-checkbox>
+                    </b-dropdown-form>
+                  </b-dropdown>
+                </b-col>
               </b-row>
               <b-table
-                :fields="fields"
+                :fields="computedFields"
                 :items="filterTier"
                 sort-icon-left
                 hover
                 caption-top
+                responsive
                 bordered
                 :current-page="currentPage"
                 :per-page="perPage"
@@ -143,8 +184,8 @@
                 <template #cell(name)="data">
                   <span>{{ data.value }}</span>
                 </template>
-                <template #cell(image)="data">
-                  <b-img-lazy :src="data.value" width="110" height="80" class="zoom" alt="null"></b-img-lazy>
+                <template #cell(battlegrounds)="data">
+                  <b-img-lazy :src="data.value.image" width="150px" class="zoom" alt="null"></b-img-lazy>
                 </template>
 
                 <template #cell(text)="data">
@@ -192,6 +233,9 @@
                 </b-col>
               </b-row>
             </b-container>
+            <b-container v-else>
+              <b-img v-for="(card, index) in filterTier" :key="index" :src="card.battlegrounds.image" style="max-width: 12rem;" />
+            </b-container>
           </b-card-text>
         </b-tab>
         <b-tab title="Heroes" lazy>
@@ -200,7 +244,7 @@
               <div>
                 <b-card-group deck>
                   <b-card no-body style="min-width: 40%;" class="bg-transparent" v-for="hero in heroes" :key="hero.id">
-                    <b-row no-gutters>
+                    <b-row no-gutters class="index">
                       <b-col md="6">
                         <b-card-img
                           :src="hero.battlegrounds.image"
@@ -231,9 +275,12 @@ export default {
   name: 'Battlegrounds',
   data() {
     return {
+      //
+      tableView: false,
+      //
       forceRecomputeCounter: 0,
       filterTermName: '',
-
+      bake: true,
       filterTermHero: null,
       filterTermMinionType: 0,
       filterTermTier: null,
@@ -243,15 +290,18 @@ export default {
         {
           label: 'Name',
           key: 'name',
-          sortable: true
+          sortable: true,
+          show: true
         },
         {
           label: 'Image',
-          key: 'image'
+          key: 'battlegrounds',
+          show: true
         },
         {
           label: 'Text',
-          key: 'text'
+          key: 'text',
+          show: true
         },
         {
           label: 'Minion Type',
@@ -261,27 +311,51 @@ export default {
             return this.returnType(value);
           },
           sortByFormatted: true,
-          filterByFormatted: true
+          filterByFormatted: true,
+          show: true
         },
         {
           label: 'Tier',
           key: 'battlegrounds.tier',
-          sortable: true
+          sortable: true,
+          show: true
         }
       ],
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 10, 15, 20, 50, 200],
       // end
-
+      fieldOptions: [
+        {
+          text: 'Text',
+          value: 'text',
+          show: true
+        },
+        {
+          text: 'Minion Type',
+          value: 'minionType',
+          show: true
+        },
+        {
+          text: 'Tier',
+          value: 'tier',
+          show: true
+        }
+      ],
       selected: null
     };
   },
+
+  
   mounted() {
     // Set the initial number of items
     this.totalRows = this.cards.length;
   },
   methods: {
+    toggleView() {
+      this.tableView = !this.tableView;
+    },
+
     // table paggination
     nextPage() {
       if (this.currentPage * this.perPage < this.cards.length) this.currentPage++;
@@ -344,6 +418,18 @@ export default {
     //
   },
   computed: {
+    variantTogle() {
+      if (this.tableView) return 'primary';
+      else return 'secondary';
+    },
+    variantTogle2() {
+      if (!this.tableView) return 'primary';
+      else return 'secondary';
+    },
+
+    computedFields() {
+      return this.fields.filter(field => field.show != false);
+    },
     /// FILTERS
     filterName() {
       this.forceRecomputeCounter;
@@ -429,6 +515,7 @@ label {
 }
 .zoom:hover {
   transform: scale(2.5);
+  z-index: 1;
 }
 .select {
   max-width: 35vw;
@@ -450,7 +537,7 @@ th {
   padding: 0.5rem;
   vertical-align: middle;
 }
-img {
+table img {
   max-width: 45%;
 }
 ul {
@@ -475,5 +562,13 @@ ul li {
 .padding {
   padding-right: 15px;
   padding-left: 15px;
+}
+.index {
+  z-index: 0;
+}
+.out {
+  position: absolute;
+  top: 100px;
+  left: -100px;
 }
 </style>

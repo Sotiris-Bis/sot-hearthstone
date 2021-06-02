@@ -1,22 +1,32 @@
 <template>
   <div>
     <b-navbar toggleable="md" class="bg-transparent" >
-      <b-navbar-brand><router-link to="/" class="trol" tabindex="0">My app</router-link></b-navbar-brand>
+      <b-navbar-brand><router-link to="/" class="trol" >My app</router-link></b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse" tabindex="0"></b-navbar-toggle>
+      <b-navbar-toggle target="nav-collapse" ></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav tabindex="0">
+      <b-collapse id="nav-collapse" is-nav >
         <b-navbar-nav>
-          <router-link to="/deckSearch" class="trol" tabindex="0">12 Wins Arenas.</router-link>
-          <router-link to="/allcardsview" class="trol" tabindex="0">All Cards per Hero.</router-link>
-          <router-link to="/arena" class="trol" tabindex="0">Arena.</router-link>
-          <router-link to="/all_cards" class="trol" tabindex="0">All Cards.</router-link>
-          <router-link to="/battlegrounds" class="trol" tabindex="0">Battlegrounds.</router-link>
+        <b-nav-item>
+          <router-link to="/deckSearch" class="trol" >12 Wins Arenas.</router-link>
+        </b-nav-item>
+        <b-nav-item>
+          <router-link to="/allcardsview" class="trol" >All Cards per Hero.</router-link>
+         </b-nav-item>
+        <b-nav-item>
+          <router-link to="/arena" class="trol" >Arena.</router-link>
+           </b-nav-item>
+        <b-nav-item>
+          <router-link to="/all_cards" class="trol" >All Cards.</router-link>
+           </b-nav-item>
+        <b-nav-item>
+          <router-link to="/battlegrounds" class="trol" >Battlegrounds.</router-link>
+           </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-button @click="toggleTheme()" variant="outline-dark" size="sm" pill tabindex="0">
+          <b-button @click="toggleTheme()" variant="outline-dark" size="sm" pill >
             <svg height="20px" viewBox="0 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg">
               <path d="m211 435h90v77h-90zm0 0" fill="#766e6e" />
               <path d="m256 435h45v77h-45zm0 0" fill="#5b5555" />

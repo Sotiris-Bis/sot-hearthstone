@@ -88,6 +88,17 @@
             </option>
           </select>
         </b-list-group-item>
+        <b-list-group-item class="transparent">
+          <label for="view">View</label>
+          <div id="view">
+            <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover.left title="Table View">
+              <b-icon icon="grid3x3-gap" aria-hidden="true" :variant="variantTogle"></b-icon>
+            </b-button>
+            <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover.right title="Card View">
+              <b-icon icon="images" aria-hidden="true" :variant="variantTogle2"></b-icon>
+            </b-button>
+          </div>
+        </b-list-group-item>
       </b-list-group>
     </b-container>
     <b-container fluid id="tableInfo">
@@ -137,7 +148,7 @@
       </div>
       <hr />
     </b-container>
-    <b-container fluid>
+    <b-container fluid v-if="tableView">
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
@@ -165,9 +176,50 @@
           <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
           <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
         </b-col>
+        <b-col>
+          <b-dropdown
+            id="asd"
+            split
+            split-variant="outline-dark"
+            variant="outline-dark"
+            text="Table columns"
+            class="m-2 transparent"
+            size="sm"
+          >
+            <b-dropdown-form>
+              <b-form-checkbox v-model="fields[0].show" switch>
+                Name
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[1].show" switch disabled>
+                Image
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[2].show" switch>
+                Class
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[3].show" switch>
+                Classes
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[4].show" switch>
+                Mana Cost
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[5].show" switch>
+                Text
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[6].show" switch>
+                Minion Type
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[7].show" switch>
+                Type
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[8].show" switch>
+                Rarity
+              </b-form-checkbox>
+            </b-dropdown-form>
+          </b-dropdown>
+        </b-col>
       </b-row>
       <b-table
-        :fields="fields"
+        :fields="computedFields"
         :items="filterType"
         sort-icon-left
         hover
@@ -272,6 +324,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <b-container fluid v-else>
+      <b-img v-for="(card, index) in filterType" :key="index" :src="card.image" style="max-width: 12rem;" />
+    </b-container>
     <b-container>
       <hr />
     </b-container>
@@ -289,6 +344,9 @@ export default {
   name: 'Arena3',
   data() {
     return {
+      //
+      tableView: false,
+      //
       forceRecomputeCounter: 0,
       filterTermName: '',
       filterTermManaCost: null,
@@ -303,11 +361,13 @@ export default {
         {
           label: 'Name',
           key: 'name',
-          sortable: true
+          sortable: true,
+          show: true
         },
         {
           label: 'Image',
-          key: 'image'
+          key: 'image',
+          show: true
         },
         {
           label: 'Class',
@@ -317,12 +377,14 @@ export default {
             return this.getClassByid(value);
           },
           sortByFormatted: true,
-          filterByFormatted: true
+          filterByFormatted: true,
+          show: true
         },
         {
           label: 'Classes',
           key: 'multiClassIds',
-          sortable: true
+          sortable: true,
+          show: true
           //   formatter: value => {
           //       return this.getClassByid(value)
           //     }
@@ -330,11 +392,13 @@ export default {
         {
           label: 'Mana Cost',
           key: 'manaCost',
-          sortable: true
+          sortable: true,
+          show: true
         },
         {
           label: 'Text',
-          key: 'text'
+          key: 'text',
+          show: true
         },
         {
           label: 'Minion Type',
@@ -344,7 +408,8 @@ export default {
             return this.returnType(value);
           },
           sortByFormatted: true,
-          filterByFormatted: true
+          filterByFormatted: true,
+          show: true
         },
         {
           label: 'Type',
@@ -352,7 +417,8 @@ export default {
           sortable: true,
           formatter: value => {
             return this.cardType(value);
-          }
+          },
+          show: true
         },
         {
           label: 'Rarity',
@@ -360,7 +426,8 @@ export default {
           sortable: true,
           formatter: value => {
             return this.rarity(value);
-          }
+          },
+          show: true
         }
       ],
       currentPage: 1,
@@ -412,6 +479,9 @@ export default {
     this.totalRows = this.arenaCards.length;
   },
   methods: {
+    toggleView() {
+      this.tableView = !this.tableView;
+    },
     // table paggination
     nextPage() {
       if (this.currentPage * this.perPage < this.arenaCards.length) this.currentPage++;
@@ -545,6 +615,18 @@ export default {
     }
   },
   computed: {
+    variantTogle() {
+      if (this.tableView) return 'primary';
+      else return 'secondary';
+    },
+    variantTogle2() {
+      if (!this.tableView) return 'primary';
+      else return 'secondary';
+    },
+
+    computedFields() {
+      return this.fields.filter(field => field.show != false);
+    },
     /// FILTERS
     filterName() {
       this.forceRecomputeCounter;
@@ -670,7 +752,7 @@ label {
   transform: scale(3);
 }
 .select {
-  max-width: 35vw;
+  max-width: 20vw;
 }
 
 .transparent {

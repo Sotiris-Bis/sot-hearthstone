@@ -16,34 +16,6 @@ export default new Vuex.Store({
       ClientID: '8cdb614ecc3c4c22848b4707483ae94b',
       ClientSecret: '86NBHJr6pQEV7qV8o5GKvhoXg7EgpyXE'
     },
-    // cards: [],
-    // cardSets: [
-    //   'madness-at-the-darkmoon-faire',
-    //   'scholomance-academy',
-    //   'demonhunter-initiate',
-    //   'ashes-of-outland',
-    //   'galakronds-awakening',
-    //   'descent-of-dragons',
-    //   'saviors-of-uldum',
-    //   'rise-of-shadows',
-    //   'rastakhans-rumble',
-    //   'the-boomsday-project',
-    //   'the-witchwood',
-    //   'kobolds-and-catacombs',
-    //   'knights-of-the-frozen-throne',
-    //   'journey-to-ungoro',
-    //   'mean-streets-of-gadgetzan',
-    //   'one-night-in-karazhan',
-    //   'whispers-of-the-old-gods',
-    //   'league-of-explorers',
-    //   'the-grand-tournament',
-    //   'blackrock-mountain',
-    //   'goblins-vs-gnomes',
-    //   'naxxramas',
-    //   'hall-of-fame',
-    //   'classic',
-    //   'basic'
-    // ],
     minionTypes: [
       { id: 14, name: 'Murloc' },
       { id: 15, name: 'Demon' },
@@ -60,9 +32,6 @@ export default new Vuex.Store({
     arenaSetsId: [25, 1130, 1414, 1525, 1443, 1466, 1637]
   },
   mutations: {
-    // SET_CARDS(state, payload) {
-    //   state.cards = payload;
-    // }
     SET_THEME(state, payload) {
       state.theme = payload;
     },

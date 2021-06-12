@@ -187,32 +187,35 @@
             size="sm"
           >
             <b-dropdown-form>
-              <b-form-checkbox v-model="fields[0].show" switch>
+              <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
                 Name
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[1].show" switch disabled>
                 Image
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[2].show" switch>
+              <b-form-checkbox v-model="fields[2].show" @change="thisShouldTriggerRecompute" switch>
                 Class
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[3].show" switch>
+              <b-form-checkbox v-model="fields[3].show" @change="thisShouldTriggerRecompute" switch>
                 Classes
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[4].show" switch>
+              <b-form-checkbox v-model="fields[4].show" @change="thisShouldTriggerRecompute" switch>
                 Mana Cost
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[5].show" switch>
+              <b-form-checkbox v-model="fields[5].show" @change="thisShouldTriggerRecompute" switch>
                 Text
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[6].show" switch>
+              <b-form-checkbox v-model="fields[6].show" @change="thisShouldTriggerRecompute" switch>
                 Minion Type
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[7].show" switch>
+              <b-form-checkbox v-model="fields[7].show" @change="thisShouldTriggerRecompute" switch>
                 Type
               </b-form-checkbox>
-              <b-form-checkbox v-model="fields[8].show" switch>
+              <b-form-checkbox v-model="fields[8].show" @change="thisShouldTriggerRecompute" switch>
                 Rarity
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[9].show" @change="thisShouldTriggerRecompute" switch>
+                Deck
               </b-form-checkbox>
             </b-dropdown-form>
           </b-dropdown>
@@ -325,7 +328,7 @@
       </b-row>
     </b-container>
     <b-container fluid v-else>
-      <b-img v-for="(card, index) in filterType" :key="index" :src="card.image" style="max-width: 12rem;" />
+      <b-img-lazy v-for="(card, index) in filterType" :key="index" :src="card.image" style="max-width: 12rem;" />
     </b-container>
     <b-container>
       <hr />
@@ -345,7 +348,7 @@ export default {
   data() {
     return {
       //
-      tableView: false,
+      tableView: true,
       //
       forceRecomputeCounter: 0,
       filterTermName: '',
@@ -428,6 +431,15 @@ export default {
             return this.rarity(value);
           },
           show: true
+        },
+        {
+          label: 'Deck',
+          key: 'cardSetId',
+          sortable: true,
+          formatter: value => {
+            return this.setName(value);
+          },
+          show: false
         }
       ],
       currentPage: 1,
@@ -685,12 +697,12 @@ export default {
       return this.cards
         .filter(
           card =>
-            card.cardSetId == 25 ||
-            card.cardSetId == 1130 ||
+            card.cardSetId == 13 ||
+            card.cardSetId == 1004 ||
             card.cardSetId == 1414 ||
-            card.cardSetId == 1525 ||
             card.cardSetId == 1443 ||
             card.cardSetId == 1466 ||
+            card.cardSetId == 1525 ||
             card.cardSetId == 1637
         )
         .sort((a, b) => {

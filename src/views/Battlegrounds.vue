@@ -135,19 +135,19 @@
                     size="sm"
                   >
                     <b-dropdown-form>
-                      <b-form-checkbox v-model="fields[0].show" switch>
+                      <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
                         Name
                       </b-form-checkbox>
                       <b-form-checkbox v-model="fields[1].show" switch disabled>
                         Image
                       </b-form-checkbox>
-                      <b-form-checkbox v-model="fields[2].show" switch>
+                      <b-form-checkbox v-model="fields[2].show" @change="thisShouldTriggerRecompute" switch>
                         Text
                       </b-form-checkbox>
-                      <b-form-checkbox v-model="fields[3].show" switch>
+                      <b-form-checkbox v-model="fields[3].show" @change="thisShouldTriggerRecompute" switch>
                         Type
                       </b-form-checkbox>
-                      <b-form-checkbox v-model="fields[4].show" switch>
+                      <b-form-checkbox v-model="fields[4].show" @change="thisShouldTriggerRecompute" switch>
                         Tier
                       </b-form-checkbox>
                     </b-dropdown-form>
@@ -276,7 +276,7 @@ export default {
   data() {
     return {
       //
-      tableView: false,
+      tableView: true,
       //
       forceRecomputeCounter: 0,
       filterTermName: '',
@@ -346,7 +346,6 @@ export default {
     };
   },
 
-  
   mounted() {
     // Set the initial number of items
     this.totalRows = this.cards.length;

@@ -185,9 +185,56 @@
           <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
           <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
         </b-col>
+        <b-col>
+          <b-dropdown
+            id="asd"
+            split
+            split-variant="outline-dark"
+            variant="outline-dark"
+            text="Table columns"
+            class="m-2 transparent"
+            size="sm"
+          >
+            <b-dropdown-form>
+              <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
+                Name
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[1].show" switch disabled>
+                Image
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[2].show" @change="thisShouldTriggerRecompute" switch>
+                Class
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[3].show" @change="thisShouldTriggerRecompute" switch>
+                Classes
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[4].show" @change="thisShouldTriggerRecompute" switch>
+                Mana Cost
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[5].show" @change="thisShouldTriggerRecompute" switch>
+                Text
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[6].show" @change="thisShouldTriggerRecompute" switch>
+                Minion Type
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[7].show" @change="thisShouldTriggerRecompute" switch>
+                Type
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[8].show" @change="thisShouldTriggerRecompute" switch>
+                Rarity
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[9].show" @change="thisShouldTriggerRecompute" switch>
+                Deck
+              </b-form-checkbox>
+              <b-form-checkbox v-model="fields[10].show" @change="thisShouldTriggerRecompute" switch>
+                Id
+              </b-form-checkbox>
+            </b-dropdown-form>
+          </b-dropdown>
+        </b-col>
       </b-row>
       <b-table
-        :fields="fields"
+        :fields="computedFields"
         :items="filterDeck"
         sort-icon-left
         hover
@@ -260,6 +307,12 @@
         <template #cell(rarityId)="data" class="text-primary">
           <span>{{ data.value }}</span>
         </template>
+        <template #cell(deck)="data" class="text-primary">
+          <span>{{ setName(data.value) }}</span>
+        </template>
+        <template #cell(cardId)="data" class="text-primary">
+          <span>{{ data.value }}</span>
+        </template>
       </b-table>
       <b-row>
         <b-col>
@@ -328,11 +381,13 @@ export default {
         {
           label: 'Name',
           key: 'name',
-          sortable: true
+          sortable: true,
+          show: true
         },
         {
           label: 'Image',
-          key: 'image'
+          key: 'image',
+          show: true
         },
         {
           label: 'Class',
@@ -342,24 +397,28 @@ export default {
             return this.getClassByid(value);
           },
           sortByFormatted: true,
-          filterByFormatted: true
+          filterByFormatted: true,
+          show: true
         },
         {
           label: 'Classes',
           key: 'multiClassIds',
-          sortable: true
+          sortable: true,
           //   formatter: value => {
           //       return this.getClassByid(value)
-          //     }
+          //     },
+          show: true
         },
         {
           label: 'Mana Cost',
           key: 'manaCost',
-          sortable: true
+          sortable: true,
+          show: true
         },
         {
           label: 'Text',
-          key: 'text'
+          key: 'text',
+          show: true
         },
         {
           label: 'Minion Type',
@@ -369,7 +428,8 @@ export default {
             return this.returnType(value);
           },
           sortByFormatted: true,
-          filterByFormatted: true
+          filterByFormatted: true,
+          show: true
         },
         {
           label: 'Type',
@@ -377,7 +437,8 @@ export default {
           sortable: true,
           formatter: value => {
             return this.cardType(value);
-          }
+          },
+          show: true
         },
         {
           label: 'Rarity',
@@ -385,7 +446,22 @@ export default {
           sortable: true,
           formatter: value => {
             return this.rarity(value);
-          }
+          },
+          show: true
+        },
+        {
+          label: 'Deck',
+          key: 'cardSetId',
+          sortable: true,
+          formatter: value => {
+            return this.setName(value);
+          },
+          show: false
+        },
+        {
+          label: 'Id',
+          key: 'id',
+          show: false
         }
       ],
       currentPage: 1,
@@ -562,12 +638,8 @@ export default {
     setName(id) {
       let x = this.sets.find(set => set.value == id);
       return x.text;
-    },
-    //
-    clearFilterHero() {
-      alert('bske');
-      this.filterTermHero == null;
     }
+    //
   },
   computed: {
     /// FILTERS
@@ -618,12 +690,22 @@ export default {
       if (this.filterTermDeck == null) {
         return this.filterType;
       } else if (this.filterTermDeck == 1000) {
-        return this.standarCards;
+        return this.filterType.filter(
+          card =>
+            card.cardSetId == '1525' ||
+            card.cardSetId == '1637' ||
+            card.cardSetId == '1466' ||
+            card.cardSetId == '1443' ||
+            card.cardSetId == '1414'
+        );
       } else return this.filterType.filter(card => card.cardSetId == this.filterTermDeck);
     },
 
     ///// FILTERS END
-
+    computedFields() {
+      this.forceRecomputeCounter;
+      return this.fields.filter(field => field.show != false);
+    },
     ...mapState({
       cards: state => state.axiosFetch.cards,
       sets: state => state.axiosFetch.sets,

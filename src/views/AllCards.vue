@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-container fluid id="filterSection">
       <label for="filterSection">The filter section</label>
-      <b-list-group horizontal="lg">
+      <b-list-group horizontal="xl">
         <b-list-group-item class="bg-transparent">
           <label for="filterTermName">Name </label>
           <input
@@ -231,11 +231,12 @@
               <b-form-checkbox v-model="fields[8].show" @change="thisShouldTriggerRecompute" switch>
                 Rarity
               </b-form-checkbox>
+              
               <b-form-checkbox v-model="fields[9].show" @change="thisShouldTriggerRecompute" switch>
-                Deck
+                Id
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[10].show" @change="thisShouldTriggerRecompute" switch>
-                Id
+                Deck
               </b-form-checkbox>
             </b-dropdown-form>
           </b-dropdown>
@@ -317,7 +318,7 @@
         <template #cell(rarityId)="data" >
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(deck)="data" >
+        <template #cell(cardSetId)="data" >
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(cardId)="data" >
@@ -461,17 +462,17 @@ export default {
           show: true
         },
         {
+          label: 'Id',
+          key: 'id',
+          show: false
+        },
+        {
           label: 'Deck',
           key: 'cardSetId',
           sortable: true,
           formatter: value => {
             return this.setName(value);
           },
-          show: false
-        },
-        {
-          label: 'Id',
-          key: 'id',
           show: false
         }
       ],

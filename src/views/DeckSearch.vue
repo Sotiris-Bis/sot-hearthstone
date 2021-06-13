@@ -145,7 +145,7 @@
             </b-container>
 
             <b-row>
-              <b-button class="bg-transparent text-dark" @click="close"> Hide Deck </b-button>
+              <b-button class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'" @click="close"> Hide Deck </b-button>
             </b-row>
             <b-row>
               <hr />
@@ -164,6 +164,8 @@
 <script>
 import axios from 'axios';
 import TwelveWins from '../components/TwelveWins.vue';
+import { mapState } from 'vuex';
+
 
 export default {
   name: 'DeckSearch',
@@ -334,6 +336,12 @@ export default {
     }
   },
   computed: {
+    ...mapState({ theme: state => state.theme }),
+    isDark(){
+      if(this.theme == 'dark'){
+        return true
+      } else return false
+    },
     img1() {
       return require('../assets/Capture1.jpg');
     },

@@ -34,9 +34,7 @@
   .dark a * {
     color: #000000;
   }
-  .dark b-table {
-    color:#ffffff;
-  }
+  
   .light {
     background: #cbd8ff;
     color: #000000;
@@ -60,15 +58,6 @@
     max-width: 35vw;
   }
   
-  .form-group input:focus {
-    background: transparent;
-  }
-  .table input:focus {
-    background: transparent;
-  }
-  textarea.form-control:focus {
-    background: transparent;
-  }
   /*** TRANSITIONS ***/
   .fade-enter {
     opacity: 0;

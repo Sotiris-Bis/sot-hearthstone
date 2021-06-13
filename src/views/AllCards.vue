@@ -3,24 +3,26 @@
     <b-container fluid id="filterSection">
       <label for="filterSection">The filter section</label>
       <b-list-group horizontal="lg">
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermName">Name </label>
           <input
             type="text"
             v-model="filterTermName"
             id="filterTermName"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           />
         </b-list-group-item>
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermHero">Class </label>
           <select
             tabindex="0"
             v-model="filterTermHero"
             id="filterTermHero"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -29,13 +31,14 @@
             </option>
           </select>
         </b-list-group-item>
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermManaCost">Mana cost </label>
           <select
             tabindex="0"
             v-model="filterTermManaCost"
             id="filterTermManaCost"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
           >
             <option v-for="option in manaCostOptions" :key="option.id" :value="option.value">
@@ -43,12 +46,13 @@
             </option>
           </select>
         </b-list-group-item>
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermMinionType">Minion type </label>
           <select
             v-model="filterTermMinionType"
             id="filterTermMinionType"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           >
@@ -58,13 +62,14 @@
             </option>
           </select>
         </b-list-group-item>
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermRarity">Rarity </label>
           <select
             tabindex="0"
             v-model="filterTermRarity"
             id="filterTermRarity"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -73,13 +78,14 @@
             </option>
           </select>
         </b-list-group-item>
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermType">Type </label>
           <select
             tabindex="0"
             v-model="filterTermType"
             id="filterTermType"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -89,13 +95,14 @@
           </select>
         </b-list-group-item>
 
-        <b-list-group-item class="transparent">
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermDeck">Deck </label>
           <select
             tabindex="0"
             v-model="filterTermDeck"
             id="filterTermDeck"
-            class="select transparent"
+            :class="isDark ? 'text-white' : 'text-dark'"
+            class="bg-transparent"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -175,15 +182,16 @@
               v-model="perPage"
               :options="pageOptions"
               size="sm"
-              class="bg-transparent text-primary"
+              :class="isDark ? 'text-white' : 'text-dark'"
+              class="bg-transparent"
             ></b-form-select>
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button @click="firstPage" pill class="bg-transparent text-primary">First</b-button>
-          <b-button @click="prevPage" pill class="bg-transparent text-primary">Previous</b-button>
-          <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
-          <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
+          <b-button type="button" @click="firstPage" pill  class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
+          <b-button type="button" @click="prevPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
+          <b-button type="button" @click="nextPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
+          <b-button type="button" @click="lastPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
         </b-col>
         <b-col>
           <b-dropdown
@@ -236,6 +244,7 @@
       <b-table
         :fields="computedFields"
         :items="filterDeck"
+        
         sort-icon-left
         hover
         caption-top
@@ -243,7 +252,8 @@
         :current-page="currentPage"
         :per-page="perPage"
         @filtered="onFiltered"
-        class="bg-transparent text-primary"
+        :class="isDark ? 'text-white' : 'text-dark'"
+        class="bg-transparent"
       >
         <template #table-caption>
           <span
@@ -281,37 +291,37 @@
           </span>
         </template>
         <template #cell(name)="data">
-          <span>{{ data.value }}</span>
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(image)="data">
           <b-img-lazy :src="data.value" width="110" height="80" class="zoom" alt="null"></b-img-lazy>
         </template>
-        <template #cell(classId)="data" class="text-primary">
-          <span>{{ data.value }}</span>
+        <template #cell(classId)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(multiClassIds)="data" class="text-primary">
-          <span>{{ getClassByid(data.value[0]) }} * {{ getClassByid(data.value[1]) }} </span>
+        <template #cell(multiClassIds)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ getClassByid(data.value[0]) }} * {{ getClassByid(data.value[1]) }} </span>
         </template>
         <template #cell(manaCost)="data">
-          <span>{{ data.value }}</span>
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(text)="data">
-          <span v-html="data.value"></span>
+          <span v-html="data.value" :class="isDark ? 'text-white' : 'text-dark'"></span>
         </template>
-        <template #cell(minionTypeId)="data" class="text-primary">
-          <span>{{ data.value }}</span>
+        <template #cell(minionTypeId)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(cardTypeId)="data" class="text-primary">
-          <span>{{ data.value }}</span>
+        <template #cell(cardTypeId)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(rarityId)="data" class="text-primary">
-          <span>{{ data.value }}</span>
+        <template #cell(rarityId)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(deck)="data" class="text-primary">
-          <span>{{ setName(data.value) }}</span>
+        <template #cell(deck)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(cardId)="data" class="text-primary">
-          <span>{{ data.value }}</span>
+        <template #cell(cardId)="data" >
+          <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
       </b-table>
       <b-row>
@@ -337,15 +347,16 @@
               v-model="perPage"
               :options="pageOptions"
               size="sm"
-              class="bg-transparent text-primary"
+              :class="isDark ? 'text-white' : 'text-dark'"
+              class="bg-transparent"
             ></b-form-select>
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button @click="firstPage" pill class="bg-transparent text-primary">First</b-button>
-          <b-button @click="prevPage" pill class="bg-transparent text-primary">Previous</b-button>
-          <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
-          <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
+          <b-button type="button" @click="firstPage" pill  class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
+          <b-button type="button" @click="prevPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
+          <b-button type="button" @click="nextPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
+          <b-button type="button" @click="lastPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -642,6 +653,11 @@ export default {
     //
   },
   computed: {
+    isDark(){
+      if(this.theme == 'dark'){
+        return true
+      } else return false
+    },
     /// FILTERS
     filterName() {
       this.forceRecomputeCounter;
@@ -704,7 +720,7 @@ export default {
     ///// FILTERS END
     computedFields() {
       this.forceRecomputeCounter;
-      return this.fields.filter(field => field.show != false);
+      return this.fields.filter(field => field.show == true);
     },
     ...mapState({
       cards: state => state.axiosFetch.cards,
@@ -712,7 +728,8 @@ export default {
       heroes: state => state.axiosFetch.heroes,
       minionTypes: state => state.axiosFetch.minionTypes,
       types: state => state.axiosFetch.types.filter(type => type.id != 3 && type.id != 10),
-      rarities: state => state.axiosFetch.rarities
+      rarities: state => state.axiosFetch.rarities,
+      theme: state => state.theme
     }),
     arenaCards() {
       return this.cards

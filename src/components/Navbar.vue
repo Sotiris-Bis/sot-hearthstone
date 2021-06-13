@@ -8,19 +8,19 @@
       <b-collapse id="nav-collapse" is-nav >
         <b-navbar-nav>
         <b-nav-item>
-          <router-link to="/deckSearch" class="trol" >12 Wins Arenas.</router-link>
+          <router-link to="/deckSearch" class="trol" :class="isDark ? 'text-white' : 'text-dark'">12 Wins Arenas.</router-link>
         </b-nav-item>
         <b-nav-item>
-          <router-link to="/allcardsview" class="trol" >All Cards per Hero.</router-link>
+          <router-link to="/allcardsview" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards per Hero.</router-link>
          </b-nav-item>
         <b-nav-item>
-          <router-link to="/arena" class="trol" >Arena.</router-link>
+          <router-link to="/arena" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Arena.</router-link>
            </b-nav-item>
         <b-nav-item>
-          <router-link to="/all_cards" class="trol" >All Cards.</router-link>
+          <router-link to="/all_cards" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards.</router-link>
            </b-nav-item>
         <b-nav-item>
-          <router-link to="/battlegrounds" class="trol" >Battlegrounds.</router-link>
+          <router-link to="/battlegrounds" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Battlegrounds.</router-link>
            </b-nav-item>
         </b-navbar-nav>
 
@@ -69,7 +69,12 @@ import { mapState } from 'vuex';
 export default {
   name: 'Navbar',
   computed: {
-    ...mapState(['theme'])
+    ...mapState(['theme']),
+    isDark(){
+      if(this.theme == 'dark'){
+        return true
+      } else return false
+    },
   },
   methods: {
     toggleTheme() {
@@ -84,7 +89,7 @@ export default {
         });
       }
     }
-  }
+  },
 };
 </script>
 <style scoped>

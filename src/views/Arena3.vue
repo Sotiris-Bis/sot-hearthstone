@@ -1,27 +1,129 @@
 <template>
   <b-container fluid>
-    <b-container fluid id="filterSection">
-      <label for="filterSection">The filter section</label>
-      <b-list-group horizontal="xl">
-        <b-list-group-item class="bg-transparent" flex-fill>
+    <b-container fluid>
+      <b-row>
+        <b-container class="bg-transparent box">
           <label for="filterTermName">Name </label>
           <b-form-input
             type="text"
             v-model="filterTermName"
             id="filterTermName"
             :class="{ 'text-white': isDark }"
-            class="bg-transparent"
+            class="bg-transparent maxWidth150"
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           />
-        </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        </b-container>
+        <b-container class="bg-transparent box">
           <label for="filterTermHero">Class </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermHero"
             id="filterTermHero"
-            class="bg-transparent"
+            class="bg-transparent maxWidth150"
+            @change="thisShouldTriggerRecompute()"
+          >
+            <option selected :value="null">Any</option>
+            <option v-for="option in heroes" :key="option.id" :value="option.id">
+              {{ option.name }}
+            </option>
+          </b-form-select>
+        </b-container>
+        <b-container class="bg-transparent box">
+          <label for="filterTermManaCost">Mana cost </label>
+          <b-form-select
+            tabindex="0"
+            v-model="filterTermManaCost"
+            id="filterTermManaCost"
+            class="bg-transparent maxWidth75"
+            @change="thisShouldTriggerRecompute()"
+          >
+            <option v-for="option in manaCostOptions" :key="option.id" :value="option.value">
+              {{ option.text }}
+            </option>
+          </b-form-select>
+        </b-container>
+        <b-container class="bg-transparent box">
+          <label for="filterTermMinionType">Minion type </label>
+          <b-form-select
+            v-model="filterTermMinionType"
+            id="filterTermMinionType"
+            class="bg-transparent maxWidth100"
+            @change="thisShouldTriggerRecompute()"
+            tabindex="0"
+          >
+            <option selected :value="null">Any</option>
+            <option v-for="option in minionTypes" :key="option.id" :value="option.id">
+              {{ option.name }}
+            </option>
+          </b-form-select>
+        </b-container>
+        <b-container class="bg-transparent box">
+          <label for="filterTermRarity">Rarity </label>
+          <b-form-select
+            tabindex="0"
+            v-model="filterTermRarity"
+            id="filterTermRarity"
+            class="bg-transparent maxWidth100"
+            @change="thisShouldTriggerRecompute()"
+          >
+            <option selected :value="null">Any</option>
+            <option v-for="option in rarities" :key="option.id" :value="option.id">
+              {{ option.name }}
+            </option>
+          </b-form-select>
+        </b-container>
+        <b-container class="bg-transparent box">
+          <label for="filterTermType">Type </label>
+          <b-form-select
+            tabindex="0"
+            v-model="filterTermType"
+            id="filterTermType"
+            class="bg-transparent maxWidth100"
+            @change="thisShouldTriggerRecompute()"
+          >
+            <option selected :value="null">Any</option>
+            <option v-for="option in types" :key="option.id" :value="option.id">
+              {{ option.name }}
+            </option>
+          </b-form-select>
+        </b-container>
+        <b-container class="bg-transparent box">
+          <label for="view">View</label>
+          <b-container id="view">
+            <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover.left title="Table View">
+              <b-icon icon="grid3x3-gap" aria-hidden="true" :variant="variantTogle"></b-icon>
+            </b-button>
+            <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover.right title="Card View">
+              <b-icon icon="images" aria-hidden="true" :variant="variantTogle2"></b-icon>
+            </b-button>
+          </b-container>
+        </b-container>
+      </b-row>
+    </b-container>
+    <!--
+    <b-container fluid id="filterSection">
+      <label for="filterSection">The filter section</label>
+      <b-list-group horizontal="xl">
+        <b-list-group-item class="bg-transparent">
+          <label for="filterTermName">Name </label>
+          <b-form-input
+            type="text"
+            v-model="filterTermName"
+            id="filterTermName"
+            :class="{ 'text-white': isDark }"
+            class="bg-transparent maxWidth150"
+            @change="thisShouldTriggerRecompute()"
+            tabindex="0"
+          />
+        </b-list-group-item>
+        <b-list-group-item class="bg-transparent">
+          <label for="filterTermHero">Class </label>
+          <b-form-select
+            tabindex="0"
+            v-model="filterTermHero"
+            id="filterTermHero"
+            class="bg-transparent maxWidth150"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -30,13 +132,13 @@
             </option>
           </b-form-select>
         </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermManaCost">Mana cost </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermManaCost"
             id="filterTermManaCost"
-            class="bg-transparent"
+            class="bg-transparent maxWidth75"
             @change="thisShouldTriggerRecompute()"
           >
             <option v-for="option in manaCostOptions" :key="option.id" :value="option.value">
@@ -44,12 +146,12 @@
             </option>
           </b-form-select>
         </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermMinionType">Minion type </label>
           <b-form-select
             v-model="filterTermMinionType"
             id="filterTermMinionType"
-            class="bg-transparent"
+            class="bg-transparent maxWidth100"
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           >
@@ -59,13 +161,13 @@
             </option>
           </b-form-select>
         </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermRarity">Rarity </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermRarity"
             id="filterTermRarity"
-            class="bg-transparent"
+            class="bg-transparent maxWidth100"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -74,13 +176,13 @@
             </option>
           </b-form-select>
         </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        <b-list-group-item class="bg-transparent">
           <label for="filterTermType">Type </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermType"
             id="filterTermType"
-            class="bg-transparent"
+            class="bg-transparent maxWidth75"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">Any</option>
@@ -89,7 +191,7 @@
             </option>
           </b-form-select>
         </b-list-group-item>
-        <b-list-group-item class="bg-transparent" flex-fill>
+        <b-list-group-item class="bg-transparent">
           <label for="view">View</label>
           <b-container id="view">
             <b-button class="bg-transparent" @click="toggleView" v-b-tooltip.hover.left title="Table View">
@@ -102,6 +204,7 @@
         </b-list-group-item>
       </b-list-group>
     </b-container>
+    -->
     <b-container fluid id="tableInfo">
       <label for="tableInfo">Filters: </label>
       <b-container>
@@ -173,20 +276,21 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" @click="firstPage" pill  class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
-          <b-button type="button" @click="prevPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
-          <b-button type="button" @click="nextPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
-          <b-button type="button" @click="lastPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
+          <b-button type="button" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
+            >First</b-button
+          >
+          <b-button type="button" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Previous</b-button
+          >
+          <b-button type="button" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Next</b-button
+          >
+          <b-button type="button" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Last</b-button
+          >
         </b-col>
         <b-col>
-          <b-dropdown
-            split
-            split-variant="outline-dark"
-            variant="outline-dark"
-            text="Table columns"
-            class="m-2 bg-transparent"
-            size="sm"
-          >
+          <b-dropdown split split-variant="outline-dark" variant="outline-dark" text="Table columns" class="m-2 bg-transparent" size="sm">
             <b-dropdown-form>
               <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
                 Name
@@ -225,7 +329,6 @@
       <b-table
         :fields="computedFields"
         :items="filterType"
-        
         sort-icon-left
         hover
         caption-top
@@ -248,36 +351,36 @@
             :class="isDark ? 'text-white' : 'text-dark'"
             >Showing only
           </span>
-          <span v-else>Showing all data</span>
-          <span v-if="filterTermHero != null">
+          <span v-else :class="isDark ? 'text-white' : 'text-dark'">Showing all data</span>
+          <span v-if="filterTermHero != null" :class="isDark ? 'text-white' : 'text-dark'">
             <b>{{ getClassByid(filterTermHero) }}</b> cards</span
           >
-          <span v-if="filterTermManaCost != null">
+          <span v-if="filterTermManaCost != null" :class="isDark ? 'text-white' : 'text-dark'">
             with Mana cost <b>{{ filterTermManaCost }}</b>
           </span>
-          <span v-if="filterTermMinionType != null">
+          <span v-if="filterTermMinionType != null" :class="isDark ? 'text-white' : 'text-dark'">
             Minion Type <b>{{ returnType(filterTermMinionType) }}</b></span
           >
-          <span v-if="filterTermRarity != null">
+          <span v-if="filterTermRarity != null" :class="isDark ? 'text-white' : 'text-dark'">
             Rarity <b>{{ rarity(filterTermRarity) }}</b></span
           >
-          <span v-if="filterTermName != ''">
+          <span v-if="filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">
             Name containing: <b>{{ filterTermName }}</b>
           </span>
-          <span v-if="filterTermType != null">
+          <span v-if="filterTermType != null" :class="isDark ? 'text-white' : 'text-dark'">
             Of type: <b>{{ cardType(filterTermType) }}</b>
           </span>
         </template>
-        <template #cell(name)="data" >
+        <template #cell(name)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(image)="data">
           <b-img-lazy :src="data.value" width="110" height="80" class="zoom" alt="null"></b-img-lazy>
         </template>
-        <template #cell(classId)="data" >
+        <template #cell(classId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(multiClassIds)="data" >
+        <template #cell(multiClassIds)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ getClassByid(data.value[0]) }} * {{ getClassByid(data.value[1]) }} </span>
         </template>
         <template #cell(manaCost)="data">
@@ -286,10 +389,10 @@
         <template #cell(text)="data">
           <span v-html="data.value" :class="isDark ? 'text-white' : 'text-dark'"></span>
         </template>
-        <template #cell(minionTypeId)="data" >
+        <template #cell(minionTypeId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(cardTypeId)="data" >
+        <template #cell(cardTypeId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(rarityId)="data">
@@ -328,10 +431,18 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" @click="firstPage" pill  class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
-          <b-button type="button" @click="prevPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
-          <b-button type="button" @click="nextPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
-          <b-button type="button" @click="lastPage" pill  class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
+          <b-button type="button" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
+            >First</b-button
+          >
+          <b-button type="button" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Previous</b-button
+          >
+          <b-button type="button" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Next</b-button
+          >
+          <b-button type="button" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >Last</b-button
+          >
         </b-col>
       </b-row>
     </b-container>
@@ -635,10 +746,10 @@ export default {
     }
   },
   computed: {
-    isDark(){
-      if(this.theme == 'dark'){
-        return true
-      } else return false
+    isDark() {
+      if (this.theme == 'dark') {
+        return true;
+      } else return false;
     },
     variantTogle() {
       if (this.tableView) return 'primary';
@@ -725,46 +836,46 @@ export default {
     },
 
     totalSpells() {
-      return this.filterMinionType.filter(card => card.cardTypeId == 5);
+      return this.filterType.filter(card => card.cardTypeId == 5);
     },
     totalWeapons() {
-      return this.filterMinionType.filter(card => card.cardTypeId == 7);
+      return this.filterType.filter(card => card.cardTypeId == 7);
     },
     totalMinios() {
-      return this.filterMinionType.filter(card => card.cardTypeId == 4);
+      return this.filterType.filter(card => card.cardTypeId == 4);
     },
     numberOfFilteredCards() {
       return this.totalMinios.length + this.totalSpells.length + this.totalWeapons.length;
     },
     totalBeasts() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 20);
+      return this.filterType.filter(card => card.minionTypeId == 20);
     },
     totalMurlocs() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 14);
+      return this.filterType.filter(card => card.minionTypeId == 14);
     },
     totalDemons() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 15);
+      return this.filterType.filter(card => card.minionTypeId == 15);
     },
     totalMechs() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 17);
+      return this.filterType.filter(card => card.minionTypeId == 17);
     },
     totalElementals() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 18);
+      return this.filterType.filter(card => card.minionTypeId == 18);
     },
     totalTotems() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 21);
+      return this.filterType.filter(card => card.minionTypeId == 21);
     },
     totalPirates() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 23);
+      return this.filterType.filter(card => card.minionTypeId == 23);
     },
     totalDragons() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 24);
+      return this.filterType.filter(card => card.minionTypeId == 24);
     },
     totalAll() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 26);
+      return this.filterType.filter(card => card.minionTypeId == 26);
     },
     totalQuilboars() {
-      return this.filterMinionType.filter(card => card.minionTypeId == 43);
+      return this.filterType.filter(card => card.minionTypeId == 43);
     }
   }
 };
@@ -790,5 +901,18 @@ ul {
 ul li {
   display: inline;
   padding: 10px;
+}
+.maxWidth75 {
+  max-width: 75px;
+}
+.maxWidth100 {
+  max-width: 100px;
+}
+.maxWidth150 {
+  max-width: 150px;
+}
+.box {
+  width: 175px;
+  height: 80px;
 }
 </style>

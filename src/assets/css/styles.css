@@ -57,6 +57,22 @@
   .select {
     max-width: 35vw;
   }
+
+
+.maxWidth75 {
+  max-width: 75px;
+}
+.maxWidth100 {
+  max-width: 100px;
+}
+.maxWidth150 {
+  max-width: 150px;
+}
+.box {
+  width: 175px;
+  height: 80px;
+  
+}
   
   /*** TRANSITIONS ***/
   .fade-enter {
@@ -69,4 +85,6 @@
   .fade-leave-to {
     opacity: 0;
   }
+
+
   

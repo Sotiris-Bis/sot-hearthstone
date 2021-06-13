@@ -1,12 +1,7 @@
 <template>
-  <div id="app" :class="theme" >
-    
-      <!-- <router-link to="/">Home</router-link> | <router-link to="/deckSearch">DeckSearch</router-link> |
-      <router-link to="/allcardsview">All Cards View</router-link> | <router-link to="/arena">Arena</router-link> |
-      <router-link to="/all_cards">All Cards Table</router-link> | -->
+  <div id="app" :class="theme">
     <Navbar />
-    
-    <transition name="fade" >
+    <transition name="fade">
       <router-view />
     </transition>
     <NotificationContainer />
@@ -28,6 +23,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

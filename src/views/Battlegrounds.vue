@@ -1,29 +1,31 @@
 <template>
   <b-container fluid>
-    <b-card no-body class="transparent">
-      <b-tabs vertical active-nav-item-class="font-weight-bold bg-transparent">
+    <b-card no-body class="bg-transparent">
+      <b-tabs vertical active-nav-item-class="font-weight-bold bg-transparent" >
         <b-tab title="Minions" active>
           <b-card-text>
             <b-container fluid id="filterSection">
-              <label for="filterSection">Filters</label>
+              <label for="filterSection" :class="isDark ? 'text-white' : 'text-dark'">Filters</label>
               <b-list-group horizontal="lg">
-                <b-list-group-item class="transparent">
-                  <label for="filterTermName">Name </label>
+                <b-list-group-item class="bg-transparent">
+                  <label for="filterTermName" :class="isDark ? 'text-white' : 'text-dark'">Name </label>
                   <b-input
                     type="text"
                     v-model="filterTermName"
                     id="filterTermName"
-                    class="select transparent"
+                    class="bg-transparent"
+                    :class="isDark ? 'text-white' : 'text-dark'"
                     @change="thisShouldTriggerRecompute()"
                     tabindex="0"
                   />
                 </b-list-group-item>
                 <b-list-group-item class="transparent">
-                  <label for="filterTermMinionType">Minion type </label>
+                  <label for="filterTermMinionType" :class="isDark ? 'text-white' : 'text-dark'">Minion type </label>
                   <b-select
                     v-model="filterTermMinionType"
                     id="filterTermMinionType"
-                    class="select transparent"
+                    class="bg-transparent"
+                    :class="isDark ? 'text-white' : 'text-dark'"
                     @change="thisShouldTriggerRecompute()"
                     tabindex="0"
                   >
@@ -34,12 +36,13 @@
                     </option>
                   </b-select>
                 </b-list-group-item>
-                <b-list-group-item class="transparent">
+                <b-list-group-item class="bg-transparent">
                   <label for="filterTermTier">Tier</label>
                   <b-select
                     v-model="filterTermTier"
                     id="filterTermTier"
-                    class="select transparent"
+                    class="bg-transparent"
+                    :class="isDark ? 'text-white' : 'text-dark'"
                     @change="thisShouldTriggerRecompute()"
                     tabindex="0"
                   >
@@ -68,7 +71,7 @@
             <b-container fluid id="tableInfo">
               <label for="tableInfo">Filters: </label>
               <div>
-                <span v-if="filterTermMinionType != 0 || filterTermName != '' || filterTermTier != null">
+                <span v-if="filterTermMinionType != 0 || filterTermName != '' || filterTermTier != null" :class="isDark ? 'text-white' : 'text-dark'">
                   Active:
                 </span>
                 <span v-else>
@@ -114,15 +117,16 @@
                       v-model="perPage"
                       :options="pageOptions"
                       size="sm"
-                      class="bg-transparent text-primary"
+                      :class="isDark ? 'text-white' : 'text-dark'"
+                      class="bg-transparent"
                     ></b-form-select>
                   </b-form-group>
                 </b-col>
                 <b-col>
-                  <b-button @click="firstPage" pill class="bg-transparent text-primary">First</b-button>
-                  <b-button @click="prevPage" pill class="bg-transparent text-primary">Previous</b-button>
-                  <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
-                  <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
+                  <b-button @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
+                  <b-button @click="prevPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
+                  <b-button @click="nextPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
+                  <b-button @click="lastPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
                 </b-col>
                 <b-col>
                   <b-dropdown
@@ -131,10 +135,11 @@
                     split-variant="outline-dark"
                     variant="outline-dark"
                     text="Table columns"
-                    class="m-2 transparent"
+                    class="bg-transparent"
+                    :class="isDark ? 'text-white' : 'text-dark'"
                     size="sm"
                   >
-                    <b-dropdown-form>
+                    <b-dropdown-form  class="bg-transparent">
                       <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
                         Name
                       </b-form-checkbox>
@@ -160,42 +165,42 @@
                 sort-icon-left
                 hover
                 caption-top
-                responsive
                 bordered
                 :current-page="currentPage"
                 :per-page="perPage"
                 @filtered="onFiltered"
-                class="bg-transparent text-primary"
+                class="bg-transparent"
+                :class="isDark ? 'text-white' : 'text-dark'"
               >
-                <template #table-caption>
-                  <span v-if="filterTermHero != null || filterTermMinionType != null || filterTermName != ''">Showing only </span>
-                  <span v-else>Showing all data</span>
-                  <span v-if="filterTermHero != null">
+                <template #table-caption >
+                  <span v-if="filterTermHero != null || filterTermMinionType != null || filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">Showing only </span>
+                  <span v-else :class="isDark ? 'text-white' : 'text-dark'">Showing all data</span>
+                  <span v-if="filterTermHero != null" :class="isDark ? 'text-white' : 'text-dark'">
                     <b>{{ getClassByid(filterTermHero) }}</b> cards</span
                   >
-                  <span v-if="filterTermMinionType != null">
+                  <span v-if="filterTermMinionType != null" :class="isDark ? 'text-white' : 'text-dark'">
                     Minion Type <b>{{ returnType(filterTermMinionType) }}</b></span
                   >
 
-                  <span v-if="filterTermName != ''">
+                  <span v-if="filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">
                     Name containing: <b>{{ filterTermName }}</b>
                   </span>
                 </template>
                 <template #cell(name)="data">
-                  <span>{{ data.value }}</span>
+                  <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
                 <template #cell(battlegrounds)="data">
                   <b-img-lazy :src="data.value.image" width="150px" class="zoom" alt="null"></b-img-lazy>
                 </template>
 
                 <template #cell(text)="data">
-                  <span v-html="data.value"></span>
+                  <span v-html="data.value" :class="isDark ? 'text-white' : 'text-dark'"></span>
                 </template>
-                <template #cell(minionTypeId)="data" class="text-primary">
-                  <span>{{ data.value }}</span>
+                <template #cell(minionTypeId)="data" >
+                  <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
-                <template #cell(tier)="data" class="text-primary">
-                  <span>{{ data.value }}</span>
+                <template #cell(tier)="data" >
+                  <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
               </b-table>
               <b-row>
@@ -221,15 +226,15 @@
                       v-model="perPage"
                       :options="pageOptions"
                       size="sm"
-                      class="bg-transparent text-primary"
+                      class="bg-transparent"
                     ></b-form-select>
                   </b-form-group>
                 </b-col>
                 <b-col>
-                  <b-button @click="firstPage" pill class="bg-transparent text-primary">First</b-button>
-                  <b-button @click="prevPage" pill class="bg-transparent text-primary">Previous</b-button>
-                  <b-button @click="nextPage" pill class="bg-transparent text-primary">Next</b-button>
-                  <b-button @click="lastPage" pill class="bg-transparent text-primary">Last</b-button>
+                  <b-button @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">First</b-button>
+                  <b-button @click="prevPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Previous</b-button>
+                  <b-button @click="nextPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Next</b-button>
+                  <b-button @click="lastPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">Last</b-button>
                 </b-col>
               </b-row>
             </b-container>
@@ -250,7 +255,7 @@
                           :src="hero.battlegrounds.image"
                           style="min-width: 25%;"
                           :alt="hero.name"
-                          class="rounded-0 zoom"
+                          class="rounded-0 "
                         ></b-card-img>
                       </b-col>
                       <b-col md="6">
@@ -266,6 +271,10 @@
         </b-tab>
       </b-tabs>
     </b-card>
+    <b-row>
+     <br />
+     <br />
+    </b-row>
   </b-container>
 </template>
 
@@ -417,6 +426,11 @@ export default {
     //
   },
   computed: {
+    isDark() {
+      if (this.theme == 'dark') {
+        return true;
+      } else return false;
+    },
     variantTogle() {
       if (this.tableView) return 'primary';
       else return 'secondary';
@@ -459,7 +473,8 @@ export default {
           return a.battlegrounds.tier - b.battlegrounds.tier;
         }),
       heroes: state => state.axiosFetch.battlegroundHeroes,
-      minionTypes: state => state.axiosFetch.minionTypes
+      minionTypes: state => state.axiosFetch.minionTypes,
+      theme: state => state.theme
     }),
 
     totalSpells() {

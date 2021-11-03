@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <b-card no-body class="bg-transparent">
-      <b-tabs vertical active-nav-item-class="font-weight-bold bg-transparent" >
+      <b-tabs fill active-nav-item-class="font-weight-bold bg-transparent">
         <b-tab title="Minions" active>
           <b-card-text>
             <b-container fluid id="filterSection">
@@ -71,7 +71,10 @@
             <b-container fluid id="tableInfo">
               <label for="tableInfo">Filters: </label>
               <div>
-                <span v-if="filterTermMinionType != 0 || filterTermName != '' || filterTermTier != null" :class="isDark ? 'text-white' : 'text-dark'">
+                <span
+                  v-if="filterTermMinionType != 0 || filterTermName != '' || filterTermTier != null"
+                  :class="isDark ? 'text-white' : 'text-dark'"
+                >
                   Active:
                 </span>
                 <span v-else>
@@ -99,7 +102,7 @@
               </div>
               <hr />
             </b-container>
-            <b-container fluid v-if="tableView">
+            <b-container fluid v-if="tableView" ref="start">
               <b-row>
                 <b-col sm="5" md="6" class="my-1">
                   <b-form-group
@@ -139,7 +142,7 @@
                     :class="isDark ? 'text-white' : 'text-dark'"
                     size="sm"
                   >
-                    <b-dropdown-form  class="bg-transparent">
+                    <b-dropdown-form class="bg-transparent">
                       <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
                         Name
                       </b-form-checkbox>
@@ -172,8 +175,12 @@
                 class="bg-transparent"
                 :class="isDark ? 'text-white' : 'text-dark'"
               >
-                <template #table-caption >
-                  <span v-if="filterTermHero != null || filterTermMinionType != null || filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">Showing only </span>
+                <template #table-caption>
+                  <span
+                    v-if="filterTermHero != null || filterTermMinionType != null || filterTermName != ''"
+                    :class="isDark ? 'text-white' : 'text-dark'"
+                    >Showing only
+                  </span>
                   <span v-else :class="isDark ? 'text-white' : 'text-dark'">Showing all data</span>
                   <span v-if="filterTermHero != null" :class="isDark ? 'text-white' : 'text-dark'">
                     <b>{{ getClassByid(filterTermHero) }}</b> cards</span
@@ -181,7 +188,6 @@
                   <span v-if="filterTermMinionType != null" :class="isDark ? 'text-white' : 'text-dark'">
                     Minion Type <b>{{ returnType(filterTermMinionType) }}</b></span
                   >
-
                   <span v-if="filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">
                     Name containing: <b>{{ filterTermName }}</b>
                   </span>
@@ -190,16 +196,15 @@
                   <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
                 <template #cell(battlegrounds)="data">
-                  <b-img-lazy :src="data.value.image" width="150px" class="zoom" alt="null"></b-img-lazy>
+                  <b-img-lazy :src="data.value.image" width="150px" class="zoom" :alt="data.item.name"></b-img-lazy>
                 </template>
-
                 <template #cell(text)="data">
                   <span v-html="data.value" :class="isDark ? 'text-white' : 'text-dark'"></span>
                 </template>
-                <template #cell(minionTypeId)="data" >
+                <template #cell(minionTypeId)="data">
                   <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
-                <template #cell(tier)="data" >
+                <template #cell(tier)="data">
                   <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
                 </template>
               </b-table>
@@ -269,11 +274,16 @@
             </b-container>
           </b-card-text>
         </b-tab>
+        <!-- <b-tab title="mercs" lazy>
+          <b-container>
+            {{mercs[0]}}
+          </b-container>
+        </b-tab> -->
       </b-tabs>
     </b-card>
     <b-row>
-     <br />
-     <br />
+      <br />
+      <br />
     </b-row>
   </b-container>
 </template>
@@ -301,16 +311,19 @@ export default {
           key: 'name',
           sortable: true,
           show: true
+          // 0
         },
         {
           label: 'Image',
           key: 'battlegrounds',
           show: true
+          // 1
         },
         {
           label: 'Text',
           key: 'text',
           show: true
+          // 2
         },
         {
           label: 'Minion Type',
@@ -322,12 +335,14 @@ export default {
           sortByFormatted: true,
           filterByFormatted: true,
           show: true
+          // 3
         },
         {
           label: 'Tier',
           key: 'battlegrounds.tier',
           sortable: true,
           show: true
+          // 4
         }
       ],
       currentPage: 1,
@@ -354,7 +369,13 @@ export default {
       selected: null
     };
   },
-
+  created: function() {
+    if (window.innerWidth <= 500) {
+      this.fields[0].show = false;
+      this.fields[3].show = false;
+      this.fields[4].show = false;
+    }
+  },
   mounted() {
     // Set the initial number of items
     this.totalRows = this.cards.length;
@@ -363,19 +384,25 @@ export default {
     toggleView() {
       this.tableView = !this.tableView;
     },
-
+    focusOnTopOfPage() {
+      this.$refs.start.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+    },
     // table paggination
     nextPage() {
       if (this.currentPage * this.perPage < this.cards.length) this.currentPage++;
+      this.focusOnTopOfPage();
     },
     prevPage() {
       if (this.currentPage > 1) this.currentPage--;
+      this.focusOnTopOfPage();
     },
     firstPage() {
       if (this.currentPage > 1) this.currentPage = 1;
+      this.focusOnTopOfPage();
     },
     lastPage() {
       this.currentPage = this.cards.length / this.perPage + 1;
+      this.focusOnTopOfPage();
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
@@ -474,7 +501,8 @@ export default {
         }),
       heroes: state => state.axiosFetch.battlegroundHeroes,
       minionTypes: state => state.axiosFetch.minionTypes,
-      theme: state => state.theme
+      theme: state => state.theme,
+      mercs: state => state.axiosFetch.mercCards
     }),
 
     totalSpells() {

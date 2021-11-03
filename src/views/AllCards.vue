@@ -283,7 +283,7 @@
       </div>
       <hr />
     </b-container>
-    <b-container fluid>
+    <b-container fluid ref="start">
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
@@ -381,6 +381,7 @@
         @filtered="onFiltered"
         :class="isDark ? 'text-white' : 'text-dark'"
         class="bg-transparent"
+        ref="start"
       >
         <template #table-caption>
           <span
@@ -422,7 +423,7 @@
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(image)="data">
-          <b-img-lazy :src="data.value" width="110" height="80" class="zoom" alt="null"></b-img-lazy>
+          <b-img-lazy :src="data.value" width="110" height="80" class="zoom" :alt="data.item.name"></b-img-lazy>
         </template>
         <template #cell(classId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
@@ -448,7 +449,7 @@
         <template #cell(cardSetId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
-        <template #cell(cardId)="data">
+        <template #cell(id)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
       </b-table>
@@ -530,11 +531,13 @@ export default {
           key: 'name',
           sortable: true,
           show: true
+          // 0
         },
         {
           label: 'Image',
           key: 'image',
           show: true
+          // 1
         },
         {
           label: 'Class',
@@ -546,6 +549,7 @@ export default {
           sortByFormatted: true,
           filterByFormatted: true,
           show: true
+          // 2
         },
         {
           label: 'Classes',
@@ -555,17 +559,20 @@ export default {
           //       return this.getClassByid(value)
           //     },
           show: true
+          // 3
         },
         {
           label: 'Mana Cost',
           key: 'manaCost',
           sortable: true,
           show: true
+          // 4
         },
         {
           label: 'Text',
           key: 'text',
           show: true
+          // 5
         },
         {
           label: 'Minion Type',
@@ -577,6 +584,7 @@ export default {
           sortByFormatted: true,
           filterByFormatted: true,
           show: true
+          // 6
         },
         {
           label: 'Type',
@@ -586,6 +594,7 @@ export default {
             return this.cardType(value);
           },
           show: true
+          // 7
         },
         {
           label: 'Rarity',
@@ -595,11 +604,13 @@ export default {
             return this.rarity(value);
           },
           show: true
+          // 8
         },
         {
           label: 'Id',
           key: 'id',
           show: false
+          // 9
         },
         {
           label: 'Deck',
@@ -609,6 +620,7 @@ export default {
             return this.setName(value);
           },
           show: false
+          // 10
         }
       ],
       currentPage: 1,
@@ -655,23 +667,50 @@ export default {
       }
     };
   },
+  created: function() {
+    if (window.innerWidth > 1200) {
+      this.fields[9].show = true;
+      this.fields[10].show = true;
+    }
+    if (window.innerWidth <= 1200) {
+      this.fields[8].show = false;
+    }
+    if (window.innerWidth <= 992) {
+      this.fields[7].show = false;
+    }
+    if (window.innerWidth <= 768) {
+      this.fields[2].show = false;
+      this.fields[3].show = false;
+    }
+    if (window.innerWidth <= 500) {
+      this.fields[0].show = false;
+      this.fields[6].show = false;
+    }
+  },
   mounted() {
     // Set the initial number of items
     this.totalRows = this.arenaCards.length;
   },
   methods: {
+    focusOnTopOfPage() {
+      this.$refs.start.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+    },
     // table paggination
     nextPage() {
       if (this.currentPage * this.perPage < this.arenaCards.length) this.currentPage++;
+      this.focusOnTopOfPage();
     },
     prevPage() {
       if (this.currentPage > 1) this.currentPage--;
+      this.focusOnTopOfPage();
     },
     firstPage() {
       if (this.currentPage > 1) this.currentPage = 1;
+      this.focusOnTopOfPage();
     },
     lastPage() {
       this.currentPage = this.arenaCards.length / this.perPage + 1;
+      this.focusOnTopOfPage();
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
@@ -784,7 +823,9 @@ export default {
     },
     setName(id) {
       let x = this.sets.find(set => set.value == id);
-      return x.text;
+      if (x) {
+        return x.text;
+      } else return;
     }
     //
   },

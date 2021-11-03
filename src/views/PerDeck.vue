@@ -479,7 +479,6 @@ table .flip-list-move {
   transition: transform 1s;
 }
 .select {
-  
   max-width: 35vw;
 }
 

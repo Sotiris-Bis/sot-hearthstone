@@ -2,6 +2,12 @@
   <b-container fluid>
     <b-container fluid>
       <b-row>
+        <b-col>
+          <h2 class="text-success font-italic">Hallow’s End Dual-Class Arena event</h2>
+        </b-col>
+      </b-row>
+
+      <b-row>
         <b-container class="bg-transparent box">
           <label for="filterTermName">Name </label>
           <b-form-input
@@ -252,7 +258,7 @@
       </b-container>
       <hr />
     </b-container>
-    <b-container fluid v-if="tableView">
+    <b-container fluid v-if="tableView" ref="start">
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
@@ -375,7 +381,7 @@
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
         </template>
         <template #cell(image)="data">
-          <b-img-lazy :src="data.value" width="110" height="80" class="zoom" alt="null"></b-img-lazy>
+          <b-img-lazy :src="data.value" width="110" height="80" class="zoom" :alt="data.item.name"></b-img-lazy>
         </template>
         <template #cell(classId)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
@@ -549,7 +555,7 @@ export default {
           formatter: value => {
             return this.rarity(value);
           },
-          show: true
+          show: false
         },
         {
           label: 'Deck',
@@ -609,22 +615,49 @@ export default {
     // Set the initial number of items
     this.totalRows = this.arenaCards.length;
   },
+  created: function() {
+    if (window.innerWidth > 1200) {
+      this.fields[8].show = true;
+      this.fields[9].show = true;
+    }
+    if (window.innerWidth <= 1200) {
+      this.fields[7].show = false;
+    }
+    if (window.innerWidth <= 992) {
+      this.fields[6].show = false;
+    }
+    if (window.innerWidth <= 768) {
+      this.fields[2].show = false;
+      this.fields[3].show = false;
+    }
+    if (window.innerWidth <= 500) {
+      this.fields[0].show = false;
+      this.fields[4].show = false;
+    }
+  },
   methods: {
+    focusOnTopOfPage() {
+      this.$refs.start.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+    },
     toggleView() {
       this.tableView = !this.tableView;
     },
     // table paggination
     nextPage() {
       if (this.currentPage * this.perPage < this.arenaCards.length) this.currentPage++;
+      this.focusOnTopOfPage();
     },
     prevPage() {
       if (this.currentPage > 1) this.currentPage--;
+      this.focusOnTopOfPage();
     },
     firstPage() {
       if (this.currentPage > 1) this.currentPage = 1;
+      this.focusOnTopOfPage();
     },
     lastPage() {
       this.currentPage = this.arenaCards.length / this.perPage + 1;
+      this.focusOnTopOfPage();
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
@@ -822,13 +855,33 @@ export default {
       return this.cards
         .filter(
           card =>
-            card.cardSetId == 13 ||
-            card.cardSetId == 1004 ||
-            card.cardSetId == 1414 ||
-            card.cardSetId == 1443 ||
-            card.cardSetId == 1466 ||
-            card.cardSetId == 1525 ||
-            card.cardSetId == 1637
+            // card.cardSetId == 13 ||
+            // card.cardSetId == 1004 ||
+            // card.cardSetId == 1414 ||
+            // card.cardSetId == 1443 ||
+            // card.cardSetId == 1466 || // madness
+            // card.cardSetId == 1525 || // forged
+            // card.cardSetId == 1637 // core
+            // // witchwood 1125
+            // // saviors 1158
+            // // united 1578
+            // // rumble 1129
+
+            // card.cardSetId == 1466 ||
+            // card.cardSetId == 1525 ||
+            // card.cardSetId == 1637 ||
+            // card.cardSetId == 1125 ||
+            // card.cardSetId == 1158 ||
+            // card.cardSetId == 1578 ||
+            // card.cardSetId == 1129
+
+            card.cardSetId == 1637 || //core
+            card.cardSetId == 1578 || //"United in Stormwind"
+            card.cardSetId == 1414 || // "Ashes of Outland"
+            card.cardSetId == 1130 || // "Rise of Shadows"
+            card.cardSetId == 1001 || // "Knights of the Frozen Throne"
+            card.cardSetId == 27 || // "Journey to Un’Goro"
+            card.cardSetId == 25 // Mean Streets of Gadgetzan
         )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;

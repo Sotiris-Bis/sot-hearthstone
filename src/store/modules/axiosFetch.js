@@ -27,6 +27,21 @@ export default {
     ]
   },
   mutations: {
+    RESET_CARDS(state){
+      state.cards = [],
+      state.sets = [ 
+        {
+          value: 1000,
+          text: 'Standar'
+        }
+      ],
+      state.minionTypes = [],
+      state.heroes = [],
+      state.types = [],
+      state.battlegroundHeroes = [],
+      state.battleCards = [],
+      state.standarCards = []      
+    },
     SET_CARDS(state, payload) {
       state.cards.push(...payload);
     },
@@ -54,17 +69,14 @@ export default {
   },
   actions: {
     getAllCards({ commit }) {
+      commit('RESET_CARDS');
       const token = this.state.oauth.accessToken;
+      const lang = this.state.lang;
       commit('loading/SET_LOADING', true, { root: true });
       nProgress.start();
       axios
-        .get(`https://us.api.blizzard.com/hearthstone/metadata/sets?locale=en_US&access_token=${token}`)
+        .get(`https://eu.api.blizzard.com/hearthstone/metadata/sets?locale=${lang}&access_token=${token}`)
         .then(res => {
-          const notification = {
-            type: 'success',
-            message: `Blizzard authenticated`
-          };
-          store.dispatch('addNotification', notification, { root: true });
           let sets = [];
           for (let set = 0; set <= res.data.length - 1; set++) {
             sets.push({ value: res.data[set].id, text: res.data[set].name });
@@ -73,7 +85,7 @@ export default {
 
           for (let set = 0; set <= res.data.length - 1; set++) {
             axios
-              .get(`https://us.api.blizzard.com/hearthstone/cards?locale=en_US&set=${res.data[set].id}&pageSize=500&access_token=${token}`)
+              .get(`https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&set=${res.data[set].id}&pageSize=500&access_token=${token}`)
               .then(res => {
                 // const notification = {
                 //   type: 'success',
@@ -88,7 +100,7 @@ export default {
           const standarSets = [1525, 1637, 1466, 1443, 1414];
           for (let i = 0; i <= standarSets.length; i++) {
             axios
-              .get(`https://us.api.blizzard.com/hearthstone/cards?locale=en_US&set=${standarSets[i]}&pageSize=500&access_token=${token}`)
+              .get(`https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&set=${standarSets[i]}&pageSize=500&access_token=${token}`)
               .then(res => {
                 let stCards = res.data.cards;
                 commit('SET_STANDAR_CARDS', stCards);
@@ -96,19 +108,19 @@ export default {
           }
         })
         .then(() => {
-          axios.get(`https://us.api.blizzard.com/hearthstone/metadata/minionTypes?locale=en_US&access_token=${token}`).then(res => {
+          axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/minionTypes?locale=${lang}&access_token=${token}`).then(res => {
             let minionTypes = res.data;
             commit('SET_MINION_TYPES', minionTypes);
           });
         })
         .then(() => {
-          axios.get(`https://us.api.blizzard.com/hearthstone/metadata/classes?locale=en_US&access_token=${token}`).then(res => {
+          axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/classes?locale=${lang}&access_token=${token}`).then(res => {
             let heroes = res.data;
             commit('SET_HEROES', heroes);
           });
         })
         .then(() => {
-          axios.get(`https://us.api.blizzard.com/hearthstone/metadata/types?locale=en_US&access_token=${token}`).then(res => {
+          axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/types?locale=${lang}&access_token=${token}`).then(res => {
             let types = res.data;
             commit('SET_TYPES', types);
           });
@@ -116,7 +128,7 @@ export default {
         .then(() => {
           axios
             .get(
-              `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds&tier=hero&pageSize=500&access_token=${token}`
+              `https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&gameMode=battlegrounds&tier=hero&pageSize=500&access_token=${token}`
             )
             .then(res => {
               let battleHeroes = res.data.cards;
@@ -125,7 +137,7 @@ export default {
         })
         .then(() => {
           axios
-            .get(`https://us.api.blizzard.com/hearthstone/cards?locale=en_US&gameMode=battlegrounds&pageSize=500&access_token=${token}`)
+            .get(`https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&gameMode=battlegrounds&pageSize=500&access_token=${token}`)
             .then(res => {
               let battleCards = res.data.cards.filter(card => card.cardTypeId == 4);
               commit('SET_BATTLEGROUND_CARDS', battleCards);

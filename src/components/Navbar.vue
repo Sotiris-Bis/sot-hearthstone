@@ -1,32 +1,36 @@
 <template>
   <div>
-    <b-navbar toggleable="md" class="bg-transparent" >
-      <b-navbar-brand><router-link to="/" class="trol" >My app</router-link></b-navbar-brand>
+    <b-navbar toggleable="md" class="bg-transparent">
+      <b-navbar-brand><router-link to="/" class="trol">My app</router-link></b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse" ></b-navbar-toggle>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav >
+      <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-        <b-nav-item>
-          <router-link to="/deckSearch" class="trol" :class="isDark ? 'text-white' : 'text-dark'">12 Wins Arenas.</router-link>
-        </b-nav-item>
-        <b-nav-item>
-          <router-link to="/allcardsview" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards per Hero.</router-link>
-         </b-nav-item>
-        <b-nav-item>
-          <router-link to="/arena" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Arena.</router-link>
-           </b-nav-item>
-        <b-nav-item>
-          <router-link to="/all_cards" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards.</router-link>
-           </b-nav-item>
-        <b-nav-item>
-          <router-link to="/battlegrounds" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Battlegrounds.</router-link>
-           </b-nav-item>
+          <b-nav-item>
+            <router-link to="/deckSearch" class="trol" :class="isDark ? 'text-white' : 'text-dark'">12 Wins Arenas.</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/allcardsview" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards per Hero.</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/arena" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Arena.</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/all_cards" class="trol" :class="isDark ? 'text-white' : 'text-dark'">All Cards.</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/battlegrounds" class="trol" :class="isDark ? 'text-white' : 'text-dark'">Battlegrounds.</router-link>
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-button @click="toggleTheme()" variant="outline-dark" size="sm" pill >
+        <div>
+          <b-button variant="primary" @click="toggleLang">{{lang}}</b-button>
+        </div>
+          
+          <b-button @click="toggleTheme()" variant="outline-dark" size="sm" pill>
             <svg height="20px" viewBox="0 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg">
               <path d="m211 435h90v77h-90zm0 0" fill="#766e6e" />
               <path d="m256 435h45v77h-45zm0 0" fill="#5b5555" />
@@ -65,16 +69,20 @@
 
 <script>
 import { mapState } from 'vuex';
+//import SVGImage from './SVG-image.vue';
 
 export default {
   name: 'Navbar',
+  components: {
+    
+  },
   computed: {
-    ...mapState(['theme']),
-    isDark(){
-      if(this.theme == 'dark'){
-        return true
-      } else return false
-    },
+    ...mapState(['theme', 'lang']),
+    isDark() {
+      if (this.theme == 'dark') {
+        return true;
+      } else return false;
+    }
   },
   methods: {
     toggleTheme() {
@@ -88,8 +96,21 @@ export default {
           localStorage.setItem('theme', 'dark');
         });
       }
+    },
+    toggleLang() {
+      if (this.lang === 'en_GB'){
+        this.$store.dispatch('set_lang', 'fr_FR').then(() => {
+          localStorage.setItem('lang', 'fr_FR');
+          this.$store.dispatch('axiosFetch/getAllCards')
+        });
+      } else {
+        this.$store.dispatch('set_lang', 'en_GB').then(() => {
+          localStorage.setItem('lang', 'en_GB');
+          this.$store.dispatch('axiosFetch/getAllCards')
+        });
+      }
     }
-  },
+  }
 };
 </script>
 <style scoped>

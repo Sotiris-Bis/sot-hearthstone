@@ -1,15 +1,11 @@
 <template>
   <div>
-    <b-card 
-        class="bg-transparent"
-        :img-src="photoUrl"
-        :img-alt="title"
-        img-top
-        >
-      
+    <b-card class="bg-transparent" :img-src="photoUrl" :img-alt="title" img-top>
       <b-card-body>
         <b-card-title>{{ title }}</b-card-title>
+        <slot name="title"></slot>
         <b-card-sub-title class="mb-2">{{ date }}</b-card-sub-title>
+        <slot name="extras"></slot>
         <b-card-text>
           {{ text }}
         </b-card-text>
@@ -21,7 +17,6 @@
           <span v-else>Hide Deck</span>
         </button>
       </b-card-body>
-      
     </b-card>
     <br />
   </div>

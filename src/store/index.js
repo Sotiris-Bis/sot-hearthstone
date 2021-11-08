@@ -29,11 +29,15 @@ export default new Vuex.Store({
     ],
     theme: '',
     notifications: [],
-    arenaSetsId: [25, 1130, 1414, 1525, 1443, 1466, 1637]
+    arenaSetsId: [25, 1130, 1414, 1525, 1443, 1466, 1637],
+    lang: 'en_GB'
   },
   mutations: {
     SET_THEME(state, payload) {
       state.theme = payload;
+    },
+    SET_LANG(state, payload) {
+      state.lang = payload;
     },
     PUSH_NOTIFICATION(state, notification) {
       state.notifications.push({
@@ -61,8 +65,18 @@ export default new Vuex.Store({
         commit('SET_THEME', 'dark');
       } else commit('SET_THEME', 'light');
     },
+    langSelector({ commit }) {
+      if (localStorage.lang) {
+        if (localStorage.lang === 'en_GB') {
+          commit('SET_LANG', 'en_GB');
+        } else commit('SET_LANG', 'fr_FR');
+      } else commit('SET_LANG', 'en_GB');
+    },
     set_theme({ commit }, payload) {
       commit('SET_THEME', payload);
+    },
+    set_lang({ commit }, payload) {
+      commit('SET_LANG', payload);
     },
     addNotification({ commit }, notification) {
       commit('PUSH_NOTIFICATION', notification);

@@ -44,7 +44,8 @@
             :loaded="loaded"
             deckCode="`AAEBAQcWq9QDh78CkQaS0AOVzQPizAOfzQP6BfPeA8bDAorQA6e%2BAvnoA5boA9m%2BA%2BS%2BA7m%2FAr2YA9zbA%2BrhA%2Bi%2BA4zUAwSnzgOonwTy6QPV8QMA`"
             :photoUrl="img3"
-          />
+          >
+          </TwelveWins>
         </b-col>
       </b-row>
       <b-row>
@@ -1466,6 +1467,38 @@ export default {
         54267,
         66864,
         54272
+      ],
+      array5: [
+        57184,
+        69509,
+        64707,
+        64008,
+        52935,
+        64713,
+        64713,
+        41176,
+        41245,
+        56603,
+        42992,
+        69606,
+        69716,
+        40921,
+        69721,
+        64709,
+        64704,
+        42442,
+        52285,
+        40378,
+        64702,
+        64711,
+        57186,
+        57186,
+        52487,
+        69674,
+        42790,
+        64716,
+        64716,
+        66868
       ]
     };
   },

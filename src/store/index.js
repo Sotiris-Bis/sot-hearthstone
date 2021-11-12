@@ -63,14 +63,19 @@ export default new Vuex.Store({
     themeSelector({ commit }) {
       if (localStorage.theme === 'dark') {
         commit('SET_THEME', 'dark');
-      } else commit('SET_THEME', 'light');
+      } else {
+        commit('SET_THEME', 'light');
+        localStorage.setItem('theme', 'light');
+      }
     },
     langSelector({ commit }) {
       if (localStorage.lang) {
-        if (localStorage.lang === 'en_GB') {
-          commit('SET_LANG', 'en_GB');
-        } else commit('SET_LANG', 'fr_FR');
-      } else commit('SET_LANG', 'en_GB');
+        commit('SET_LANG', `${localStorage.lang}`);
+        localStorage.setItem('lang', `${localStorage.lang}`);
+      } else {
+        commit('SET_LANG', 'en_GB');
+        localStorage.setItem('lang', 'en_GB');
+      }
     },
     set_theme({ commit }, payload) {
       commit('SET_THEME', payload);

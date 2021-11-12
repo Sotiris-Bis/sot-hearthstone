@@ -27,20 +27,20 @@ export default {
     ]
   },
   mutations: {
-    RESET_CARDS(state){
-      state.cards = [],
-      state.sets = [ 
-        {
-          value: 1000,
-          text: 'Standar'
-        }
-      ],
-      state.minionTypes = [],
-      state.heroes = [],
-      state.types = [],
-      state.battlegroundHeroes = [],
-      state.battleCards = [],
-      state.standarCards = []      
+    RESET_CARDS(state) {
+        state.cards = [],
+        state.sets = [
+          {
+            value: 1000,
+            text: 'Standar'
+          }
+        ],
+        state.minionTypes = [],
+        state.heroes = [],
+        state.types = [],
+        state.battlegroundHeroes = [],
+        state.battleCards = [],
+        state.standarCards = [];
     },
     SET_CARDS(state, payload) {
       state.cards.push(...payload);
@@ -85,7 +85,9 @@ export default {
 
           for (let set = 0; set <= res.data.length - 1; set++) {
             axios
-              .get(`https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&set=${res.data[set].id}&pageSize=500&access_token=${token}`)
+              .get(
+                `https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&set=${res.data[set].id}&pageSize=500&access_token=${token}`
+              )
               .then(res => {
                 // const notification = {
                 //   type: 'success',

@@ -1607,46 +1607,46 @@ export default {
       } else return false;
     },
     img1() {
-      return require('../assets/Capture1.jpg');
+      return require('../assets/images/Capture1.jpg');
     },
     img2() {
-      return require('../assets/paladin1.jpg');
+      return require('../assets/images/paladin1.jpg');
     },
     img3() {
-      return require('../assets/tseris2.jpg');
+      return require('../assets/images/tseris2.jpg');
     },
     img4() {
-      return require('../assets/napo1.jpg');
+      return require('../assets/images/napo1.jpg');
     },
     img5() {
-      return require('../assets/Shaman1.jpg');
+      return require('../assets/images/Shaman1.jpg');
     },
     img6() {
-      return require('../assets/tseris-warrior-1.jpg');
+      return require('../assets/images/tseris-warrior-1.jpg');
     },
     img7() {
-      return require('../assets/napo-shaman1.jpg');
+      return require('../assets/images/napo-shaman1.jpg');
     },
     img8() {
-      return require('../assets/warriorFlawless1.jpg');
+      return require('../assets/images/warriorFlawless1.jpg');
     },
     img9() {
-      return require('../assets/demonHunter1.jpg');
+      return require('../assets/images/demonHunter1.jpg');
     },
     img10() {
-      return require('../assets/priest1.jpg');
+      return require('../assets/images/priest1.jpg');
     },
     img11() {
-      return require('../assets/druid-napo1.jpg');
+      return require('../assets/images/druid-napo1.jpg');
     },
     img12() {
-      return require('../assets/warlock1.jpg');
+      return require('../assets/images/warlock1.jpg');
     },
     img13() {
-      return require('../assets/Napo_DH1.jpg');
+      return require('../assets/images/Napo_DH1.jpg');
     },
     img14() {
-      return require('../assets/warlockNapo1.jpg');
+      return require('../assets/images/warlockNapo1.jpg');
     }
   }
 };

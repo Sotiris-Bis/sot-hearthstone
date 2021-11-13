@@ -28,19 +28,19 @@ export default {
   },
   mutations: {
     RESET_CARDS(state) {
-        state.cards = [],
-        state.sets = [
+      (state.cards = []),
+        (state.sets = [
           {
             value: 1000,
             text: 'Standar'
           }
-        ],
-        state.minionTypes = [],
-        state.heroes = [],
-        state.types = [],
-        state.battlegroundHeroes = [],
-        state.battleCards = [],
-        state.standarCards = [];
+        ]),
+        (state.minionTypes = []),
+        (state.heroes = []),
+        (state.types = []),
+        (state.battlegroundHeroes = []),
+        (state.battleCards = []),
+        (state.standarCards = []);
     },
     SET_CARDS(state, payload) {
       state.cards.push(...payload);
@@ -111,9 +111,7 @@ export default {
         })
         .then(() => {
           axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/minionTypes?locale=${lang}&access_token=${token}`).then(res => {
-            //let minionTypes = res.data;
-            let filteredMinionTypes = res.data.filter(card => card.gameModes != 7)
-            //console.log(filteredMinionTypes);
+            let filteredMinionTypes = res.data.filter(card => card.gameModes != 7);
             commit('SET_MINION_TYPES', filteredMinionTypes);
           });
         })

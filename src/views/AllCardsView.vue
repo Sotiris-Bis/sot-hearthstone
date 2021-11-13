@@ -5,36 +5,36 @@
         <Neutral />
       </b-tab>
 
-      <b-tab title="Demonhunter" lazy>
+      <b-tab :title="$t('Demonhunter')" lazy>
         <Demonhunter />
       </b-tab>
-      <b-tab title="Druid" lazy>
+      <b-tab :title="$t('Druid')" lazy>
         <Druid />
       </b-tab>
-      <b-tab title="Hunter" lazy>
+      <b-tab :title="$t('Hunter')" lazy>
         <Hunter />
       </b-tab>
 
-      <b-tab title="Mage" lazy>
+      <b-tab :title="$t('Mage')" lazy>
         <Mage />
       </b-tab>
 
-      <b-tab title="Paladin" lazy>
+      <b-tab :title="$t('Paladin')" lazy>
         <Paladin />
       </b-tab>
-      <b-tab title="Priest" lazy>
+      <b-tab :title="$t('Priest')" lazy>
         <Priest />
       </b-tab>
-      <b-tab title="Rogue" lazy>
+      <b-tab :title="$t('Rogue')" lazy>
         <Rogue />
       </b-tab>
-      <b-tab title="Shaman" lazy>
+      <b-tab :title="$t('Shaman')" lazy>
         <Shaman />
       </b-tab>
-      <b-tab title="Warlock" lazy>
+      <b-tab :title="$t('Warlock')" lazy>
         <Warlock />
       </b-tab>
-      <b-tab title="Warrior" lazy>
+      <b-tab :title="$t('Warrior')" lazy>
         <Warrior />
       </b-tab>
     </b-tabs>

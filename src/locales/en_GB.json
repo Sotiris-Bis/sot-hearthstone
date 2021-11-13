@@ -28,6 +28,26 @@
   "message10":"Type a deck code to get the cards",
   "minions": "Minions",
   "heroes": "Heroes",
+  "Demonhunter":"Demonhunter",
+  "Druid":"Druid",
+  "Hunter":"Hunter",
+  "Mage":"Mage",
+  "Paladin":"Paladin",
+  "Priest":"Priest",
+  "Rogue":"Rogue",
+  "Shaman":"Shaman",
+  "Warlock":"Warlock",
+  "Warrior":"Warrior",
+  "Neutral":"Neutral",
 
-  "lol": "trol"
+  "Murloc":"Murloc",
+  "Demon":"Demon",
+  "Mech":"Mech",
+  "Elemental":"Elemental",
+  "Beast":"Beast",
+  "Totem":"Totem",
+  "Pirate":"Pirate",
+  "Dragon":"Dragon",
+  "All":"All",
+  "Quilboar":"Quilboar"
 }

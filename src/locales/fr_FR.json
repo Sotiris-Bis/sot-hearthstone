@@ -28,5 +28,28 @@
     "message10":"Tapez un code de deck pour obtenir les cartes",
     "minions": "Serviteurs",
     "heroes": "Héros",
-    "lol": "trol"
+    "Demonhunter":"Chasseur de démons",
+    "Druid":"Druide",
+    "Hunter":"Chasseur",
+    "Mage":"Mage",
+    "Paladin":"Paladin",
+    "Priest":"Prêtre",
+    "Rogue":"Voleur",
+    "Shaman":"Chaman",
+    "Warlock":"Démoniste",
+    "Warrior":"Guerrier",
+    "Neutral":"Neutre",
+
+    "Murloc":"Murloc",
+    "Demon":"Démon",
+    "Mech":"Méca",
+    "Elemental":"Élémentaire",
+    "Beast":"Bête",
+    "Totem":"Totem",
+    "Pirate":"Pirate",
+    "Dragon":"Dragon",
+    "All":"Tout",
+    "Quilboar":"Huran"
+
+    
   }

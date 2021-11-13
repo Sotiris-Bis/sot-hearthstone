@@ -13,8 +13,8 @@
 
       <b-card-body>
         <button class="bg-transparent" @click="getMyDeck(deckCode)">
-          <span v-if="!loaded">Show Full Deck</span>
-          <span v-else>Hide Deck</span>
+          <span v-if="!loaded"> {{ $t('button1') }}</span>
+          <span v-else> {{ $t('button2') }}</span>
         </button>
       </b-card-body>
     </b-card>

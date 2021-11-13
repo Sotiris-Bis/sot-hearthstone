@@ -17,5 +17,16 @@
                 
     "message8": "Ceci est une application Web à but non lucratif. Toutes les images de cartes de noms Hearthstone, etc. appartiennent à Blizzard Entertainment.",
     "message9": "Réalisé avec Vue2 js, Bootstrap 4, firebase (hébergement) et beaucoup d'amour....",
+    "button1":"Montrer le pont complet",
+    "button2":"Cacher",
+    "button3":"Chercher",
+    "li1":"12 gagner arène",
+    "li2":"Toutes les cartes par Héros",
+    "li3":"Cartes d'arène",
+    "li4":"Toutes les cartes",
+    "li5":"Champs de bataille",
+    "message10":"Tapez un code de deck pour obtenir les cartes",
+    "minions": "Serviteurs",
+    "heroes": "Héros",
     "lol": "trol"
   }

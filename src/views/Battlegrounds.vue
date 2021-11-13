@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-card no-body class="bg-transparent">
       <b-tabs fill active-nav-item-class="font-weight-bold bg-transparent">
-        <b-tab title="Minions" active>
+        <b-tab :title=" $t('minions') " active>
           <b-card-text>
             <b-container fluid id="filterSection">
               <label for="filterSection" :class="isDark ? 'text-white' : 'text-dark'">Filters</label>
@@ -248,7 +248,7 @@
             </b-container>
           </b-card-text>
         </b-tab>
-        <b-tab title="Heroes" lazy>
+        <b-tab :title="$t('heroes')" lazy>
           <b-card-text>
             <b-container>
               <div>

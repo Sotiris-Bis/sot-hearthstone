@@ -8,19 +8,19 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item>
-            <router-link to="/deckSearch" class="pad" :class="isDark ? 'text-white' : 'text-dark'">12 Wins Arenas.</router-link>
+            <router-link to="/deckSearch" class="pad" :class="isDark ? 'text-white' : 'text-dark'">{{ $t('li1') }}</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/allcardsview" class="pad" :class="isDark ? 'text-white' : 'text-dark'">All Cards per Hero.</router-link>
+            <router-link to="/allcardsview" class="pad" :class="isDark ? 'text-white' : 'text-dark'">{{ $t('li2') }}</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/arena" class="pad" :class="isDark ? 'text-white' : 'text-dark'">Arena.</router-link>
+            <router-link to="/arena" class="pad" :class="isDark ? 'text-white' : 'text-dark'">{{ $t('li3') }}</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/all_cards" class="pad" :class="isDark ? 'text-white' : 'text-dark'">All Cards.</router-link>
+            <router-link to="/all_cards" class="pad" :class="isDark ? 'text-white' : 'text-dark'">{{ $t('li4') }}</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/battlegrounds" class="pad" :class="isDark ? 'text-white' : 'text-dark'">Battlegrounds.</router-link>
+            <router-link to="/battlegrounds" class="pad" :class="isDark ? 'text-white' : 'text-dark'">{{ $t('li5') }}</router-link>
           </b-nav-item>
         </b-navbar-nav>
 

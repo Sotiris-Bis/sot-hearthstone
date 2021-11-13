@@ -1,10 +1,10 @@
 <template>
   <div class="container" ref="start">
-    <h3>Type a deck code to get the cards</h3>
+    <h3>{{ $t('message10') }}</h3>
     <form>
       <input type="text" v-model="search" refs="bake" />
       <br />
-      <button class="bg-transparent" type="submit" @click.prevent="get">Search</button>
+      <button class="bg-transparent" type="submit" @click.prevent="get">{{ $t('button3') }}</button>
     </form>
     <br />
 
@@ -44,8 +44,7 @@
             :loaded="loaded"
             deckCode="`AAEBAQcWq9QDh78CkQaS0AOVzQPizAOfzQP6BfPeA8bDAorQA6e%2BAvnoA5boA9m%2BA%2BS%2BA7m%2FAr2YA9zbA%2BrhA%2Bi%2BA4zUAwSnzgOonwTy6QPV8QMA`"
             :photoUrl="img3"
-          >
-          </TwelveWins>
+          />
         </b-col>
       </b-row>
       <b-row>
@@ -187,7 +186,18 @@
             :photoUrl="img14"
           />
         </b-col>
-        <b-col> </b-col>
+        <b-col> 
+          <TwelveWins
+            heroClass="Priest-Mage"
+            title="Priest Mage"
+            date="07th Nov 2021"
+            text="Time may pass but the dream is eternal!"
+            @clicked="getDeckWithTriples"
+            :loaded="loaded"
+            :deckCode="array5"
+            :photoUrl="img15"
+          />
+        </b-col>
       </b-row>
       <b-row>
         <hr />
@@ -1538,8 +1548,9 @@ export default {
     },
     getMyDeck(deck) {
       const token = this.$store.state.oauth.accessToken;
+      const lang = this.$store.state.lang;
       axios
-        .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=en_US&code=${deck}&access_token=${token}`)
+        .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=${lang}&code=${deck}&access_token=${token}`)
         .then(res => {
           this.loaded = !this.loaded;
           this.cards = res.data.cards;
@@ -1566,13 +1577,14 @@ export default {
     },
     getDeckWithTriples(deck) {
       const token = this.$store.state.oauth.accessToken;
+      const lang = this.$store.state.lang;
       let deckCards = [];
       if (this.loaded == true) {
         this.focusOnCardList();
       } else
         for (let i = 0; i <= deck.length - 1; i++) {
           axios
-            .get(`https://us.api.blizzard.com/hearthstone/cards/${deck[i]}?locale=en_US&access_token=${token}`)
+            .get(`https://us.api.blizzard.com/hearthstone/cards/${deck[i]}?locale=${lang}&access_token=${token}`)
             .then(res => {
               deckCards.push(res.data);
             })
@@ -1647,6 +1659,9 @@ export default {
     },
     img14() {
       return require('../assets/images/warlockNapo1.jpg');
+    },
+    img15() {
+      return require('../assets/images/priest_mage1.jpeg')
     }
   }
 };
@@ -1656,4 +1671,3 @@ export default {
   transform: scale(1.5);
 }
 </style>
-warlockNapo1

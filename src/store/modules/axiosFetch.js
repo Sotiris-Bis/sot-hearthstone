@@ -111,8 +111,10 @@ export default {
         })
         .then(() => {
           axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/minionTypes?locale=${lang}&access_token=${token}`).then(res => {
-            let minionTypes = res.data;
-            commit('SET_MINION_TYPES', minionTypes);
+            //let minionTypes = res.data;
+            let filteredMinionTypes = res.data.filter(card => card.gameModes != 7)
+            //console.log(filteredMinionTypes);
+            commit('SET_MINION_TYPES', filteredMinionTypes);
           });
         })
         .then(() => {
@@ -145,10 +147,6 @@ export default {
               commit('SET_BATTLEGROUND_CARDS', battleCards);
             });
         })
-        // .then(() => {
-        //   console.log(this.state.battlegroundHeroes);
-        //   //this.state.battlegroundHeroes.forEach(hero => console.log(hero.childIds));
-        // })
         .then(() => {
           commit('loading/SET_LOADING', false, { root: true });
         })

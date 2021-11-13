@@ -17,5 +17,17 @@
               
   "message8": "This is a non profit web app. All Hearthstone names cards images etc belong to Blizzard Entertainment.",
   "message9": " Made with Vue2 js, Bootstrap 4, firebase (hosting) and lots of love....",
+  "button1":"Show full deck",
+  "button2":"Hide Deck",
+  "button3":"Search",
+  "li1":"12 wins arena",
+  "li2":"All cards per Hero",
+  "li3":"Arena cards",
+  "li4":"All cards",
+  "li5":"Battlegrounds",
+  "message10":"Type a deck code to get the cards",
+  "minions": "Minions",
+  "heroes": "Heroes",
+
   "lol": "trol"
 }

@@ -30,7 +30,8 @@ export default new Vuex.Store({
     theme: '',
     notifications: [],
     arenaSetsId: [25, 1130, 1414, 1525, 1443, 1466, 1637],
-    lang: 'en_GB'
+    lang: '',
+    langs: ['en_GB', 'fr_FR']
   },
   mutations: {
     SET_THEME(state, payload) {

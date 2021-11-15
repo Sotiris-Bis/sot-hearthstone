@@ -62,6 +62,10 @@ export default {
     loaded: {
       type: Boolean,
       required: true
+    },
+    heroIs: {
+      type: Boolean,
+      required: false
     }
   },
   methods: {

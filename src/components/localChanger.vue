@@ -14,11 +14,8 @@ import { mapState } from 'vuex';
 export default {
   name: 'locale-changer',
 
-  data() {
-    return { langs: ['en_GB', 'fr_FR'] };
-  },
   computed: {
-    ...mapState(['theme', 'lang']),
+    ...mapState(['theme', 'langs']),
     isDark() {
       if (this.theme == 'dark') {
         return true;
@@ -27,8 +24,6 @@ export default {
   },
   methods: {
     toggleLang(event) {
-      if (this.lang === 'en_GB') {
-        //console.log(event.target.value);
         this.$store
           .dispatch('set_lang', `${event.target.value}`)
           //localStorage.setItem('lang', `${event.target.value}`)
@@ -36,17 +31,7 @@ export default {
             localStorage.setItem('lang', `${event.target.value}`);
             this.$store.dispatch('axiosFetch/getAllCards');
           });
-      } else {
-        //console.log(event.target.value);
-        this.$store
-          .dispatch('set_lang', `${event.target.value}`)
-          // localStorage.setItem('lang', `${event.target.value}`)
-          .then(() => {
-            localStorage.setItem('lang', `${event.target.value}`);
-            this.$store.dispatch('axiosFetch/getAllCards');
-          });
-      }
-    }
+      } 
   }
 };
 </script>

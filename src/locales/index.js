@@ -5,5 +5,5 @@ export const defaultLocale = 'en_GB'
 
 export const languages = {
   en: en_GB,
-  de: fr_FR,
+  fr: fr_FR,
 }

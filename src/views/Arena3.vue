@@ -9,7 +9,7 @@
 
       <b-row>
         <b-container class="bg-transparent box">
-          <label for="filterTermName">Name </label>
+          <label for="filterTermName">{{ $t('Name') }} </label>
           <b-form-input
             type="text"
             v-model="filterTermName"
@@ -21,7 +21,7 @@
           />
         </b-container>
         <b-container class="bg-transparent box">
-          <label for="filterTermHero">Class </label>
+          <label for="filterTermHero">{{ $t('Class') }} </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermHero"
@@ -29,14 +29,14 @@
             class="bg-transparent maxWidth150"
             @change="thisShouldTriggerRecompute()"
           >
-            <option selected :value="null">Any</option>
+            <option selected :value="null">{{ $t('Any') }}</option>
             <option v-for="option in heroes" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
           </b-form-select>
         </b-container>
         <b-container class="bg-transparent box">
-          <label for="filterTermManaCost">Mana cost </label>
+          <label for="filterTermManaCost">{{ $t('Mana cost') }} </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermManaCost"
@@ -44,13 +44,14 @@
             class="bg-transparent maxWidth75"
             @change="thisShouldTriggerRecompute()"
           >
+            <option selected :value="null">{{ $t('Any') }}</option>
             <option v-for="option in manaCostOptions" :key="option.id" :value="option.value">
               {{ option.text }}
             </option>
           </b-form-select>
         </b-container>
         <b-container class="bg-transparent box">
-          <label for="filterTermMinionType">Minion type </label>
+          <label for="filterTermMinionType">{{ $t('Minion type') }} </label>
           <b-form-select
             v-model="filterTermMinionType"
             id="filterTermMinionType"
@@ -58,14 +59,14 @@
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           >
-            <option selected :value="null">Any</option>
+            <option selected :value="null">{{ $t('Any') }}</option>
             <option v-for="option in minionTypes" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
           </b-form-select>
         </b-container>
         <b-container class="bg-transparent box">
-          <label for="filterTermRarity">Rarity </label>
+          <label for="filterTermRarity">{{ $t('Rarity') }} </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermRarity"
@@ -73,14 +74,14 @@
             class="bg-transparent maxWidth100"
             @change="thisShouldTriggerRecompute()"
           >
-            <option selected :value="null">Any</option>
+            <option selected :value="null">{{ $t('Any') }}</option>
             <option v-for="option in rarities" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
           </b-form-select>
         </b-container>
         <b-container class="bg-transparent box">
-          <label for="filterTermType">Type </label>
+          <label for="filterTermType">{{ $t('Type') }} </label>
           <b-form-select
             tabindex="0"
             v-model="filterTermType"
@@ -88,7 +89,7 @@
             class="bg-transparent maxWidth100"
             @change="thisShouldTriggerRecompute()"
           >
-            <option selected :value="null">Any</option>
+            <option selected :value="null">{{ $t('Any') }}</option>
             <option v-for="option in types" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
@@ -109,7 +110,7 @@
     </b-container>
 
     <b-container fluid id="tableInfo">
-      <label for="tableInfo">Filters: </label>
+      <label for="tableInfo">{{ $t('Filters') }}: </label>
       <b-container>
         <span
           v-if="
@@ -121,10 +122,10 @@
               filterTermType != null
           "
         >
-          Active:
+          {{ $t('Active') }} :
         </span>
         <span v-else>
-          <b-badge variant="success" pill>None</b-badge>
+          <b-badge variant="success" pill>{{ $t('None') }}</b-badge>
         </span>
         <b-badge variant="warning" v-if="filterTermHero != null" pill>
           {{ getClassByid(filterTermHero) }}
@@ -145,13 +146,13 @@
           Card Type: <b>{{ cardType(filterTermType) }}</b>
         </b-badge>
         <hr />
-        Minios: <b>{{ totalMinios.length }}</b> Spells: <b>{{ totalSpells.length }}</b> Weapons: <b>{{ totalWeapons.length }}</b> of
-        <b>{{ numberOfFilteredCards }} </b>cards.
+        {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}: <b>{{ totalWeapons.length }}</b> of
+        <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
         <hr />
-        Beasts: <b>{{ totalBeasts.length }}</b> | Murlocs: <b>{{ totalMurlocs.length }}</b> | Elementals:
-        <b>{{ totalElementals.length }}</b> | Mechs:<b> {{ totalMechs.length }}</b> | Demons: <b>{{ totalDemons.length }}</b> | Pirates:
-        <b> {{ totalPirates.length }}</b> | Totems: <b>{{ totalTotems.length }}</b> | Dragons: <b> {{ totalDragons.length }}</b> |
-        Quilboars: <b> {{ totalQuilboars.length }}</b> | All types:<b> {{ totalAll.length }}</b>
+        {{ $t('Beast') }}: <b>{{ totalBeasts.length }}</b> | {{ $t('Murloc') }}: <b>{{ totalMurlocs.length }}</b> | {{ $t('Elemental') }}:
+        <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}: <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}:
+        <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}: <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> |
+        {{ $t('Quilboar') }}: <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
       </b-container>
       <hr />
     </b-container>
@@ -159,7 +160,7 @@
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
-            label="Per page"
+            :label="$t('Per page')" 
             label-for="per-page-select"
             label-cols-sm="6"
             label-cols-md="4"
@@ -179,51 +180,58 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
-            >First</b-button
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('First') }}</b-button
           >
-          <b-button type="button" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Previous</b-button
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Previous') }}</b-button
           >
-          <b-button type="button" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Next</b-button
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Next') }}</b-button
           >
-          <b-button type="button" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Last</b-button
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Last') }}</b-button
           >
         </b-col>
         <b-col>
-          <b-dropdown split split-variant="outline-dark" variant="outline-dark" text="Table columns" class="m-2 bg-transparent" size="sm">
+          <b-dropdown 
+          split 
+          split-variant="outline-dark" 
+          variant="outline-dark" 
+          :text="$t('Table columns')"  
+          class="m-2 bg-transparent" 
+          size="sm"
+          >
             <b-dropdown-form>
               <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
-                Name
+                {{ $t('Name') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[1].show" switch disabled>
-                Image
+                {{ $t('Image') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[2].show" @change="thisShouldTriggerRecompute" switch>
-                Class
+                {{ $t('Class') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[3].show" @change="thisShouldTriggerRecompute" switch>
-                Classes
+                {{ $t('Classes') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[4].show" @change="thisShouldTriggerRecompute" switch>
-                Mana Cost
+                {{ $t('Mana cost') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[5].show" @change="thisShouldTriggerRecompute" switch>
-                Text
+                {{ $t('Text') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[6].show" @change="thisShouldTriggerRecompute" switch>
-                Minion Type
+               {{ $t('Minion type') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[7].show" @change="thisShouldTriggerRecompute" switch>
-                Type
+                {{ $t('Type') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[8].show" @change="thisShouldTriggerRecompute" switch>
-                Rarity
+                {{ $t('Rarity') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[9].show" @change="thisShouldTriggerRecompute" switch>
-                Deck
+                {{ $t('Deck') }}
               </b-form-checkbox>
             </b-dropdown-form>
           </b-dropdown>
@@ -252,27 +260,29 @@
                 filterTermType != null
             "
             :class="isDark ? 'text-white' : 'text-dark'"
-            >Showing only
+            >{{ $t('Active') }} {{ $t('filters') }} :
           </span>
-          <span v-else :class="isDark ? 'text-white' : 'text-dark'">Showing all data</span>
-          <span v-if="filterTermHero != null" :class="isDark ? 'text-white' : 'text-dark'">
-            <b>{{ getClassByid(filterTermHero) }}</b> cards</span
+          <span v-else>
+          <b-badge variant="success" pill>{{ $t('All') }} {{ $t('cards') }}</b-badge>
+          </span>
+          <b-badge variant="warning" v-if="filterTermHero != null" pill>
+            {{ getClassByid(filterTermHero) }}
+          </b-badge>
+          <b-badge variant="warning" v-if="filterTermManaCost != null" pill>
+            {{ $t('Mana cost') }}: <b>{{ filterTermManaCost }}</b>
+          </b-badge>
+          <b-badge variant="warning" v-if="filterTermMinionType != null" pill>
+            {{ $t('Minion type') }}: <b>{{ returnType(filterTermMinionType) }}</b></b-badge
           >
-          <span v-if="filterTermManaCost != null" :class="isDark ? 'text-white' : 'text-dark'">
-            with Mana cost <b>{{ filterTermManaCost }}</b>
-          </span>
-          <span v-if="filterTermMinionType != null" :class="isDark ? 'text-white' : 'text-dark'">
-            Minion Type <b>{{ returnType(filterTermMinionType) }}</b></span
+          <b-badge variant="warning" v-if="filterTermRarity != null" pill>
+            {{ $t('Rarity') }}: <b>{{ rarity(filterTermRarity) }}</b></b-badge
           >
-          <span v-if="filterTermRarity != null" :class="isDark ? 'text-white' : 'text-dark'">
-            Rarity <b>{{ rarity(filterTermRarity) }}</b></span
-          >
-          <span v-if="filterTermName != ''" :class="isDark ? 'text-white' : 'text-dark'">
-            Name containing: <b>{{ filterTermName }}</b>
-          </span>
-          <span v-if="filterTermType != null" :class="isDark ? 'text-white' : 'text-dark'">
-            Of type: <b>{{ cardType(filterTermType) }}</b>
-          </span>
+          <b-badge variant="warning" v-if="filterTermName != ''" pill>
+            {{ $t('Name') }}: <b>{{ filterTermName }}</b>
+          </b-badge>
+          <b-badge variant="warning" v-if="filterTermType != null" pill>
+            {{ $t('Type') }}: <b>{{ cardType(filterTermType) }}</b>
+          </b-badge>
         </template>
         <template #cell(name)="data">
           <span :class="isDark ? 'text-white' : 'text-dark'">{{ data.value }}</span>
@@ -312,9 +322,9 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col sm="5" md="6" class="my-1">
+         <b-col sm="5" md="6" class="my-1">
           <b-form-group
-            label="Per page"
+            :label="$t('Per page')" 
             label-for="per-page-select"
             label-cols-sm="6"
             label-cols-md="4"
@@ -334,17 +344,17 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
-            >First</b-button
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('First') }}</b-button
           >
-          <b-button type="button" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Previous</b-button
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Previous') }}</b-button
           >
-          <b-button type="button" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Next</b-button
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Next') }}</b-button
           >
-          <b-button type="button" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >Last</b-button
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
+            >{{ $t('Last') }}</b-button
           >
         </b-col>
       </b-row>
@@ -465,14 +475,13 @@ export default {
         }
       ],
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 10, 15, 20, 50, { value: 200, text: 'Show a lot' }],
+      perPage: 10,
+      pageOptions: [10, 20, 50, 100],
       // end
 
       selected: null,
       selectedManaCost: null,
       manaCostOptions: [
-        { value: null, text: 'Any' },
         { value: 0, text: 0 },
         { value: 1, text: 1 },
         { value: 2, text: 2 },
@@ -568,50 +577,50 @@ export default {
     rarity(number) {
       switch (number) {
         case 1:
-          return 'Common';
+          return this.$t('Common');
         case 2:
-          return 'Free';
+          return this.$t('Free');
         case 3:
-          return 'Rare';
+          return this.$t('Rare');
         case 4:
-          return 'Epic';
+          return this.$t('Epic');
         case 5:
-          return 'Legendary';
+          return this.$t('Legendary');
       }
     },
     getClassByid(id) {
       switch (id) {
         case 2:
-          return 'Druid';
+          return this.$t('Druid');
         case 3:
-          return 'Hunter';
+          return this.$t('Hunter');
 
         case 4:
-          return 'Mage';
+          return this.$t('Mage');
 
         case 5:
-          return 'Paladin';
+          return this.$t('Paladin');
 
         case 6:
-          return 'Priest';
+          return this.$t('Priest');
 
         case 7:
-          return 'Rogue';
+          return this.$t('Rogue');
 
         case 8:
-          return 'Shaman';
+          return this.$t('Shaman');
 
         case 9:
-          return 'Warlock';
+          return this.$t('Warlock');
 
         case 10:
-          return 'Warrior';
+          return this.$t('Warrior');
         case 12:
-          return 'Neutral';
+          return this.$t('Neutral');
         case 14:
-          return 'Demonhunter';
+          return this.$t('Demonhunter');
         case 26:
-          return 'All';
+          return this.$t('All');
         default:
           return '';
       }
@@ -619,32 +628,32 @@ export default {
     returnType(number) {
       switch (number) {
         case 14:
-          return 'Murloc';
+          return this.$t('Murloc');
         case 15:
-          return 'Demon';
+          return this.$t('Demon');
 
         case 17:
-          return 'Mech';
+          return this.$t('Mech');
 
         case 18:
-          return 'Elemental';
+          return this.$t('Elemental');
 
         case 20:
-          return 'Beast';
+          return this.$t('Beast');
 
         case 21:
-          return 'Totem';
+          return this.$t('Totem');
 
         case 23:
-          return 'Pirate';
+          return this.$t('Pirate');
 
         case 24:
-          return 'Dragon';
+          return this.$t('Dragon');
 
         case 26:
-          return 'All';
+          return this.$t('All');
         case 43:
-          return 'Quilboar';
+          return this.$t('Quilboar');
         default:
           return '';
       }
@@ -652,19 +661,20 @@ export default {
     cardType(number) {
       switch (number) {
         case 4:
-          return 'Minion';
+          return this.$t('Minion');
         case 5:
-          return 'Spell';
+          return this.$t('Spell');
 
         case 3:
-          return 'Hero';
+          return this.$t('Hero');
 
         case 7:
-          return 'Weapon';
+          return this.$t('Weapon');
         default:
           return '';
       }
     },
+
     setName(id) {
       let x = this.sets.find(set => set.value == id);
       return x.text;

@@ -49,5 +49,49 @@
   "Pirate":"Pirate",
   "Dragon":"Dragon",
   "All":"All",
-  "Quilboar":"Quilboar"
+  "Quilboar":"Quilboar",
+
+  "Minion" :"Minion",
+  "Spell" : "Spell",
+  "Weapon" : "Weapon",
+
+  "Common" : "Common",
+  "Free" : "Free",
+  "Rare" : "Rare",
+  "Epic" :"Epic",
+  "Legendary" :"Legendary",
+
+  "First":"First",
+  "Previous" :"Previous",
+  "Next":"Next",
+  "Last":"Last",
+
+  "Cards": "Cards",
+  "cards":"cards",
+  "Filters":"Filters",
+  "filters":"filters",
+  "None":"None",
+  "Any":"Any",
+
+  "Table columns": "Table columns",
+  "Per page":"Per page",
+  "Name":  "Nom",
+  "Class":"Classe",
+  "Classes":"Classes",
+  "Mana cost":"Mana cost",
+  "Minion type":"Minion type",
+  "Rarity":"Rarity",
+  "Type":"Type",
+  "Image":"Image",
+  "Deck":"Deck",
+  "Text":"Text",
+
+
+  "Showing":"Showing",
+  "only":"only",
+  "Active":"Active",
+  
+  "Format":"Format",
+  "Wild":"Wild"
+  
 }

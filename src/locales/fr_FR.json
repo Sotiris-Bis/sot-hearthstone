@@ -49,7 +49,50 @@
     "Pirate":"Pirate",
     "Dragon":"Dragon",
     "All":"Tout",
-    "Quilboar":"Huran"
+    "Quilboar":"Huran",
 
+    "Minion" :"Serviteur",
+    "Spell" : "Épeler",
+    "Weapon" : "Arme",
+
+    "Common" : "Commun",
+    "Free" : "Gratuit",
+    "Rare" : "Rare",
+    "Epic" :"Épique",
+    "Legendary" :"Légendaire",
+
+    "First":"Premier",
+    "Previous" :"Précédent",
+    "Next":"Prochain",
+    "Last":"Dernier",
+
+    "Cards" :" Cartes",
+    "cards" :"le cartes",
+    "Filters":"Filtres",
+    "filters":"filtres",
+    "None":"Rien",
+    "Any":"Tout",
+
+    "Table columns" : "Colonnes du tableau",
+    "Per page": "Par page",
+
+    "Name":  "Nom",
+    "Class":"Classe",
+    "Classes":"Des classes",
+    "Mana cost":"Coût en mana",
+    "Minion type":"Serviteur",
+    "Rarity":"Rareté",
+    "Type":"Type",
+    "Image":"Image",
+    "Deck":"Paquet",
+    "Text":"Texte",
+
+    "Showing":"Exposer",
+    "only":"seul",
+    "Active":"Actif",
+
+
+    "Format":"Format",
+    "Wild":"Sauvage"
     
   }

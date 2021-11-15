@@ -34,9 +34,8 @@ new Vue({
 
   created() {
     this.$store.dispatch('themeSelector');
-    this.$store.dispatch('langSelector').then(()=>{
-      this.init();
-    })
+    this.$store.dispatch('langSelector');
+    this.init();
     
     // console.log('process.env:')
     // console.log(process.env)

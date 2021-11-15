@@ -18,13 +18,7 @@ export default {
     battlegroundHeroes: [],
     battleCards: [],
     standarCards: [],
-    rarities: [
-      { slug: 'common', id: 1, craftingCost: [50, 400], dustValue: [5, 50], name: 'Common' },
-      { slug: 'free', id: 2, craftingCost: [null, null], dustValue: [null, null], name: 'Free' },
-      { slug: 'rare', id: 3, craftingCost: [100, 800], dustValue: [20, 100], name: 'Rare' },
-      { slug: 'epic', id: 4, craftingCost: [400, 1600], dustValue: [100, 400], name: 'Epic' },
-      { slug: 'legendary', id: 5, craftingCost: [1600, 3200], dustValue: [400, 1600], name: 'Legendary' }
-    ]
+    rarities: []
   },
   mutations: {
     RESET_CARDS(state) {
@@ -40,7 +34,8 @@ export default {
         (state.types = []),
         (state.battlegroundHeroes = []),
         (state.battleCards = []),
-        (state.standarCards = []);
+        (state.standarCards = []),
+        (state.rarities = []);
     },
     SET_CARDS(state, payload) {
       state.cards.push(...payload);
@@ -65,6 +60,9 @@ export default {
     },
     SET_BATTLEGROUND_CARDS(state, payload) {
       state.battleCards.push(...payload);
+    },
+    SET_RARITIES(state, payload) {
+      state.rarities.push(...payload)
     }
   },
   actions: {
@@ -74,6 +72,7 @@ export default {
       const lang = this.state.lang;
       commit('loading/SET_LOADING', true, { root: true });
       nProgress.start();
+
       axios
         .get(`https://eu.api.blizzard.com/hearthstone/metadata/sets?locale=${lang}&access_token=${token}`)
         .then(res => {
@@ -114,6 +113,12 @@ export default {
             let filteredMinionTypes = res.data.filter(card => card.gameModes != 7);
             commit('SET_MINION_TYPES', filteredMinionTypes);
           });
+        })
+        .then(()=>{
+          axios.get(`https://us.api.blizzard.com/hearthstone/metadata/rarities?locale=${lang}&access_token=${token}`).then((res)=>{
+            let rarities =  res.data;
+            commit('SET_RARITIES', rarities)
+          })
         })
         .then(() => {
           axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/classes?locale=${lang}&access_token=${token}`).then(res => {

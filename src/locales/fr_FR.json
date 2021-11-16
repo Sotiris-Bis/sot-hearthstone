@@ -1,0 +1,98 @@
+  {
+    "message1": "Bienvenue sur mon application Hearthstone",
+    "message2": "Cette application existe pour fournir aux joueurs des informations correctes sur les cartes disponibles que vous pouvez choisir dans le repêchage de l'arène.",
+    "message3": "Dans la page Arena se trouve un tableau avec toutes les cartes que vous pouvez choisir avec divers filtres à appliquer",
+                
+    "message4": "La page de toutes les cartes fournit un tableau avec toutes les cartes Hearthstone et de nombreux filtres pour vous aider à trouver la carte que vous recherchez.",
+                
+    "message5": "La page des cartes par héros vous donne une liste complète des images des cartes",
+                
+    "message6": "Enfin, il y a une page d'arène de 12 victoires, où je poste les decks qui l'ont fait. Certains d'entre eux contiennent 3 copies ou plus de la même carte, je ne suis donc pas en mesure de vous fournir un code de deck.",
+                
+    "message7": "Vous trouverez des trucs bizarres dans les données de la carte comme des sorts neutres. Désolé les gens, c'est ce que dit la base de données de Blizzards",
+                
+                
+                
+                
+                
+    "message8": "Ceci est une application Web à but non lucratif. Toutes les images de cartes de noms Hearthstone, etc. appartiennent à Blizzard Entertainment.",
+    "message9": "Réalisé avec Vue2 js, Bootstrap 4, firebase (hébergement) et beaucoup d'amour....",
+    "button1":"Montrer le pont complet",
+    "button2":"Cacher",
+    "button3":"Chercher",
+    "li1":"12 gagner arène",
+    "li2":"Toutes les cartes par Héros",
+    "li3":"Cartes d'arène",
+    "li4":"Toutes les cartes",
+    "li5":"Champs de bataille",
+    "message10":"Tapez un code de deck pour obtenir les cartes",
+    "minions": "Serviteurs",
+    "heroes": "Héros",
+    "Demonhunter":"Chasseur de démons",
+    "Druid":"Druide",
+    "Hunter":"Chasseur",
+    "Mage":"Mage",
+    "Paladin":"Paladin",
+    "Priest":"Prêtre",
+    "Rogue":"Voleur",
+    "Shaman":"Chaman",
+    "Warlock":"Démoniste",
+    "Warrior":"Guerrier",
+    "Neutral":"Neutre",
+
+    "Murloc":"Murloc",
+    "Demon":"Démon",
+    "Mech":"Méca",
+    "Elemental":"Élémentaire",
+    "Beast":"Bête",
+    "Totem":"Totem",
+    "Pirate":"Pirate",
+    "Dragon":"Dragon",
+    "All":"Tout",
+    "Quilboar":"Huran",
+
+    "Minion" :"Serviteur",
+    "Spell" : "Épeler",
+    "Weapon" : "Arme",
+
+    "Common" : "Commun",
+    "Free" : "Gratuit",
+    "Rare" : "Rare",
+    "Epic" :"Épique",
+    "Legendary" :"Légendaire",
+
+    "First":"Premier",
+    "Previous" :"Précédent",
+    "Next":"Prochain",
+    "Last":"Dernier",
+
+    "Cards" :" Cartes",
+    "cards" :"le cartes",
+    "Filters":"Filtres",
+    "filters":"filtres",
+    "None":"Rien",
+    "Any":"Tout",
+
+    "Table columns" : "Colonnes du tableau",
+    "Per page": "Par page",
+
+    "Name":  "Nom",
+    "Class":"Classe",
+    "Classes":"Des classes",
+    "Mana cost":"Coût en mana",
+    "Minion type":"Serviteur",
+    "Rarity":"Rareté",
+    "Type":"Type",
+    "Image":"Image",
+    "Deck":"Paquet",
+    "Text":"Texte",
+
+    "Showing":"Exposer",
+    "only":"seul",
+    "Active":"Actif",
+
+
+    "Format":"Format",
+    "Wild":"Sauvage"
+    
+  }

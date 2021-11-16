@@ -28,6 +28,11 @@ export default {
         .getToken()
         .then(({ data }) => {
           commit('SET_ACCESS_TOKEN', data.access_token);
+          const notification = {
+            type: 'success',
+            message: `Blizzard authenticated`
+          };
+          store.dispatch('addNotification', notification, { root: true });
         })
         .then(() => {
           store.dispatch('axiosFetch/getAllCards');

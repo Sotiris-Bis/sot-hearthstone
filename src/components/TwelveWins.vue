@@ -1,15 +1,11 @@
 <template>
   <div>
-    <b-card 
-        class="bg-transparent"
-        :img-src="photoUrl"
-        :img-alt="title"
-        img-top
-        >
-      
+    <b-card class="bg-transparent" :img-src="photoUrl" :img-alt="title" img-top>
       <b-card-body>
         <b-card-title>{{ title }}</b-card-title>
+        <slot name="title"></slot>
         <b-card-sub-title class="mb-2">{{ date }}</b-card-sub-title>
+        <slot name="extras"></slot>
         <b-card-text>
           {{ text }}
         </b-card-text>
@@ -17,11 +13,10 @@
 
       <b-card-body>
         <button class="bg-transparent" @click="getMyDeck(deckCode)">
-          <span v-if="!loaded">Show Full Deck</span>
-          <span v-else>Hide Deck</span>
+          <span v-if="!loaded"> {{ $t('button1') }}</span>
+          <span v-else> {{ $t('button2') }}</span>
         </button>
       </b-card-body>
-      
     </b-card>
     <br />
   </div>
@@ -67,6 +62,10 @@ export default {
     loaded: {
       type: Boolean,
       required: true
+    },
+    heroIs: {
+      type: Boolean,
+      required: false
     }
   },
   methods: {

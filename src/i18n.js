@@ -18,9 +18,14 @@ function loadLocaleMessages() {
   });
   return messages;
 }
+function langSelect() {
+  if (`${localStorage.lang}` !== 'undefined') {
+    return `${localStorage.lang}`;
+  } else return 'en_GB';
+}
 
 export default new VueI18n({
-  locale: `${localStorage.lang}`,
+  locale: langSelect(),
   fallbackLocale: 'en_GB',
   messages: loadLocaleMessages()
 });

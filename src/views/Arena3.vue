@@ -146,13 +146,14 @@
           Card Type: <b>{{ cardType(filterTermType) }}</b>
         </b-badge>
         <hr />
-        {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}: <b>{{ totalWeapons.length }}</b> of
-        <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
+        {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}:
+        <b>{{ totalWeapons.length }}</b> of <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
         <hr />
         {{ $t('Beast') }}: <b>{{ totalBeasts.length }}</b> | {{ $t('Murloc') }}: <b>{{ totalMurlocs.length }}</b> | {{ $t('Elemental') }}:
-        <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}: <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}:
-        <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}: <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> |
-        {{ $t('Quilboar') }}: <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
+        <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
+        <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}: <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}:
+        <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> | {{ $t('Quilboar') }}:
+        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
       </b-container>
       <hr />
     </b-container>
@@ -160,7 +161,7 @@
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
-            :label="$t('Per page')" 
+            :label="$t('Per page')"
             label-for="per-page-select"
             label-cols-sm="6"
             label-cols-md="4"
@@ -180,27 +181,27 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('First') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Previous') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Next') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Last') }}</b-button
-          >
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('First')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Previous')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Next')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Last')
+          }}</b-button>
         </b-col>
         <b-col>
-          <b-dropdown 
-          split 
-          split-variant="outline-dark" 
-          variant="outline-dark" 
-          :text="$t('Table columns')"  
-          class="m-2 bg-transparent" 
-          size="sm"
+          <b-dropdown
+            split
+            split-variant="outline-dark"
+            variant="outline-dark"
+            :text="$t('Table columns')"
+            class="m-2 bg-transparent"
+            size="sm"
           >
             <b-dropdown-form>
               <b-form-checkbox v-model="fields[0].show" @change="thisShouldTriggerRecompute" switch>
@@ -222,7 +223,7 @@
                 {{ $t('Text') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[6].show" @change="thisShouldTriggerRecompute" switch>
-               {{ $t('Minion type') }}
+                {{ $t('Minion type') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[7].show" @change="thisShouldTriggerRecompute" switch>
                 {{ $t('Type') }}
@@ -263,7 +264,7 @@
             >{{ $t('Active') }} {{ $t('filters') }} :
           </span>
           <span v-else>
-          <b-badge variant="success" pill>{{ $t('All') }} {{ $t('cards') }}</b-badge>
+            <b-badge variant="success" pill>{{ $t('All') }} {{ $t('cards') }}</b-badge>
           </span>
           <b-badge variant="warning" v-if="filterTermHero != null" pill>
             {{ getClassByid(filterTermHero) }}
@@ -322,9 +323,9 @@
         </b-col>
       </b-row>
       <b-row>
-         <b-col sm="5" md="6" class="my-1">
+        <b-col sm="5" md="6" class="my-1">
           <b-form-group
-            :label="$t('Per page')" 
+            :label="$t('Per page')"
             label-for="per-page-select"
             label-cols-sm="6"
             label-cols-md="4"
@@ -344,18 +345,18 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('First') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Previous') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Next') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Last') }}</b-button
-          >
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('First')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Previous')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Next')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Last')
+          }}</b-button>
         </b-col>
       </b-row>
     </b-container>

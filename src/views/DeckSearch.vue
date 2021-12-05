@@ -200,6 +200,22 @@
         </b-col>
       </b-row>
       <b-row>
+        <b-col>
+         <TwelveWins
+            heroClass="Warrior-Paladin"
+            title="Warrior Paladin"
+            date="04th Dec 2021"
+            text="The Queen found her King"
+            @clicked="getDeckWithTriples"
+            :loaded="loaded"
+            :deckCode="array6"
+            :photoUrl="img16"
+          />
+        </b-col>
+        <b-col></b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
         <hr />
       </b-row>
       <section ref="trolompoukis">
@@ -437,6 +453,38 @@ export default {
         64716,
         64716,
         66868
+      ],
+      array6: [
+        57182,
+        40839,
+        69651,
+        1022,
+        69677,
+        69668,
+        64708,
+        41316,
+        56820,
+        64713,
+        42394,
+        65692,
+        64720,
+        64720,
+        64720,
+        64975,
+        64010,
+        69659,
+        52418,
+        63712,
+        66863,
+        57180,
+        64711,
+        64724,
+        52487,
+        42790,
+        69544,
+        64716,
+        66864,
+        41425
       ]
     };
   },
@@ -590,6 +638,9 @@ export default {
     },
     img15() {
       return require('../assets/images/priest_mage1.jpeg');
+    },
+    img16() {
+      return require('../assets/images/napo-dual1.jpg');
     }
   }
 };

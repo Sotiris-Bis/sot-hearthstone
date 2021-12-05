@@ -443,8 +443,6 @@ export default {
           formatter: value => {
             return this.returnType(value);
           },
-          sortByFormatted: true,
-          filterByFormatted: true,
           show: true
         },
         {
@@ -632,25 +630,18 @@ export default {
           return this.$t('Murloc');
         case 15:
           return this.$t('Demon');
-
         case 17:
           return this.$t('Mech');
-
         case 18:
           return this.$t('Elemental');
-
         case 20:
           return this.$t('Beast');
-
         case 21:
           return this.$t('Totem');
-
         case 23:
           return this.$t('Pirate');
-
         case 24:
           return this.$t('Dragon');
-
         case 26:
           return this.$t('All');
         case 43:
@@ -790,6 +781,14 @@ export default {
             card.cardSetId == 1001 || // "Knights of the Frozen Throne"
             card.cardSetId == 27 || // "Journey to Un’Goro"
             card.cardSetId == 25 // Mean Streets of Gadgetzan
+
+            // card.cardSetId == 1626 ||  //fractured
+            // card.cardSetId == 1158 || //saviors
+            // card.cardSetId == 1004 || //kobolts
+            // card.cardSetId == 20 || //league
+            // card.cardSetId == 1143 || //scholomance
+            // card.cardSetId == 1127 || //the boomsday
+            // card.cardSetId == 1637 || //core
         )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;

@@ -27,7 +27,8 @@ function langSelect() {
 export default new VueI18n({
   locale: langSelect(),
   fallbackLocale: 'en_GB',
-  messages: loadLocaleMessages()
+  messages: loadLocaleMessages(),
+  silentTranslationWarn:true
 });
 
 // var i18n = new VueI18n({

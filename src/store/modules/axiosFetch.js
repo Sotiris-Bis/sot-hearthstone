@@ -77,6 +77,7 @@ export default {
         .get(`https://eu.api.blizzard.com/hearthstone/metadata/sets?locale=${lang}&access_token=${token}`)
         .then(res => {
           let sets = [];
+          //console.log(res);
           for (let set = 0; set <= res.data.length - 1; set++) {
             sets.push({ value: res.data[set].id, text: res.data[set].name });
           }

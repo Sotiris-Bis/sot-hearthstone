@@ -1,12 +1,12 @@
 <template>
   <b-container fluid>
     <b-container fluid>
-      <b-row>
+    <!--  <b-row>
         <b-col>
           <h2 class="text-success font-italic">Hallow’s End Dual-Class Arena event</h2>
         </b-col>
       </b-row>
-
+-->
       <b-row>
         <b-container class="bg-transparent box">
           <label for="filterTermName">{{ $t('Name') }} </label>
@@ -774,21 +774,21 @@ export default {
             // card.cardSetId == 1578 ||
             // card.cardSetId == 1129
 
-            card.cardSetId == 1637 || //core
-            card.cardSetId == 1578 || //"United in Stormwind"
-            card.cardSetId == 1414 || // "Ashes of Outland"
-            card.cardSetId == 1130 || // "Rise of Shadows"
-            card.cardSetId == 1001 || // "Knights of the Frozen Throne"
-            card.cardSetId == 27 || // "Journey to Un’Goro"
-            card.cardSetId == 25 // Mean Streets of Gadgetzan
-
-            // card.cardSetId == 1626 ||  //fractured
-            // card.cardSetId == 1158 || //saviors
-            // card.cardSetId == 1004 || //kobolts
-            // card.cardSetId == 20 || //league
-            // card.cardSetId == 1143 || //scholomance
-            // card.cardSetId == 1127 || //the boomsday
             // card.cardSetId == 1637 || //core
+            // card.cardSetId == 1578 || //"United in Stormwind"
+            // card.cardSetId == 1414 || // "Ashes of Outland"
+            // card.cardSetId == 1130 || // "Rise of Shadows"
+            // card.cardSetId == 1001 || // "Knights of the Frozen Throne"
+            // card.cardSetId == 27 || // "Journey to Un’Goro"
+            // card.cardSetId == 25 // Mean Streets of Gadgetzan
+
+            card.cardSetId == 1626 ||  //fractured
+            card.cardSetId == 1158 || //saviors
+            card.cardSetId == 1004 || //kobolts
+            card.cardSetId == 20 || //league
+            card.cardSetId == 1143 || //scholomance
+            card.cardSetId == 1127 || //the boomsday
+            card.cardSetId == 1637  //core
         )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;

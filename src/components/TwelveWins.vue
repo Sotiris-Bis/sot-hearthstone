@@ -53,6 +53,7 @@ export default {
       required: true
     },
     deckCode: {
+      type: [String, Array],
       required: true
     },
     photoUrl: {

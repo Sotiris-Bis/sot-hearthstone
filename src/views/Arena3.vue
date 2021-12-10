@@ -786,7 +786,7 @@ export default {
             card.cardSetId == 1158 || //saviors
             card.cardSetId == 1004 || //kobolts
             card.cardSetId == 20 || //league
-            card.cardSetId == 1143 || //scholomance
+            card.cardSetId == 1443 || //scholomance
             card.cardSetId == 1127 || //the boomsday
             card.cardSetId == 1637  //core
         )

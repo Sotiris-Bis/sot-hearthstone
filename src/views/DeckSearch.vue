@@ -212,7 +212,20 @@
             :photoUrl="img16"
           />
         </b-col>
-        <b-col></b-col>
+        <b-col>
+          <b-col>
+          <TwelveWins
+            heroClass="Demonhunter"
+            title="Demonhunter"
+            date="09 Dec 2021"
+            text="Inquisitor of the life-binder"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAea5AxSWoATWoASL1QPq5gLNpATDzAOAnwSukgSZoATezgOpkQSHF9HNA4GfBNqkBLzQA5PNA4zUA4CFBLCKBAWDnwTypQOboAT4lAShoQMA`"
+            :photoUrl="img17"
+          />
+        </b-col>
+        </b-col>
         <b-col></b-col>
       </b-row>
       <b-row>
@@ -641,6 +654,9 @@ export default {
     },
     img16() {
       return require('../assets/images/napo-dual1.jpg');
+    },
+    img17() {
+      return require('../assets/images/napodh1.png');
     }
   }
 };

@@ -147,7 +147,7 @@
         </b-badge>
         <hr />
         {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}:
-        <b>{{ totalWeapons.length }}</b> of <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
+        <b>{{ totalWeapons.length }}</b> {{ $t('Hero') }}: <b>{{ totalHeroes.length }}</b>  of <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
         <hr />
         {{ $t('Beast') }}: <b>{{ totalBeasts.length }}</b> | {{ $t('Murloc') }}: <b>{{ totalMurlocs.length }}</b> | {{ $t('Elemental') }}:
         <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
@@ -746,7 +746,7 @@ export default {
       sets: state => state.axiosFetch.sets.filter(set => set.value != 1000),
       heroes: state => state.axiosFetch.heroes,
       minionTypes: state => state.axiosFetch.minionTypes,
-      types: state => state.axiosFetch.types.filter(type => type.id != 3 && type.id != 10),
+      types: state => state.axiosFetch.types.filter(type => type.id != 10),
       rarities: state => state.axiosFetch.rarities,
       theme: state => state.theme
     }),
@@ -804,8 +804,11 @@ export default {
     totalMinios() {
       return this.filterType.filter(card => card.cardTypeId == 4);
     },
+    totalHeroes() {
+      return this.filterType.filter(card => card.cardTypeId == 3);
+    },
     numberOfFilteredCards() {
-      return this.totalMinios.length + this.totalSpells.length + this.totalWeapons.length;
+      return this.filterType.length;
     },
     totalBeasts() {
       return this.filterType.filter(card => card.minionTypeId == 20);

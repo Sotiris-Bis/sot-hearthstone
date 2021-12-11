@@ -159,13 +159,14 @@
           {{ $t('Deck') }}: <b>{{ setName(filterTermDeck) }}</b>
         </b-badge>
         <hr />
-        {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}: <b>{{ totalWeapons.length }}</b> of
-        <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
+        {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}:
+        <b>{{ totalWeapons.length }}</b> {{ $t('Hero') }}: <b>{{ totalHeroes.length }}</b> of <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
         <hr />
         {{ $t('Beast') }}: <b>{{ totalBeasts.length }}</b> | {{ $t('Murloc') }}: <b>{{ totalMurlocs.length }}</b> | {{ $t('Elemental') }}:
-        <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}: <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}:
-        <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}: <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> |
-        {{ $t('Quilboar') }}: <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
+        <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
+        <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}: <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}:
+        <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> | {{ $t('Quilboar') }}:
+        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
       </div>
       <hr />
     </b-container>
@@ -173,7 +174,7 @@
       <b-row>
         <b-col sm="5" md="6" class="my-1">
           <b-form-group
-            :label="$t('Per page')" 
+            :label="$t('Per page')"
             label-for="per-page-select"
             label-cols-sm="6"
             label-cols-md="4"
@@ -193,18 +194,18 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('First') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Previous') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Next') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Last') }}</b-button
-          >
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('First')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Previous')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Next')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Last')
+          }}</b-button>
         </b-col>
         <b-col>
           <b-dropdown
@@ -212,7 +213,7 @@
             split
             split-variant="outline-dark"
             variant="outline-dark"
-           :text="$t('Table columns')"  
+            :text="$t('Table columns')"
             class="m-2 transparent"
             size="sm"
           >
@@ -227,7 +228,7 @@
                 {{ $t('Class') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[3].show" @change="thisShouldTriggerRecompute" switch>
-                 {{ $t('Classes') }}
+                {{ $t('Classes') }}
               </b-form-checkbox>
               <b-form-checkbox v-model="fields[4].show" @change="thisShouldTriggerRecompute" switch>
                 {{ $t('Mana cost') }}
@@ -283,7 +284,7 @@
             >{{ $t('Active') }} {{ $t('filters') }} :
           </span>
           <span v-else>
-          <b-badge variant="success" pill>{{ $t('All') }} {{ $t('cards') }}</b-badge>
+            <b-badge variant="success" pill>{{ $t('All') }} {{ $t('cards') }}</b-badge>
           </span>
           <b-badge variant="warning" v-if="filterTermHero != null" pill>
             {{ getClassByid(filterTermHero) }}
@@ -370,18 +371,18 @@
           </b-form-group>
         </b-col>
         <b-col>
-          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('First') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Previous') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Next') }}</b-button
-          >
-          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'"
-            >{{ $t('Last') }}</b-button
-          >
+          <b-button type="button" size="sm" @click="firstPage" pill class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('First')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="prevPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Previous')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="nextPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Next')
+          }}</b-button>
+          <b-button type="button" size="sm" @click="lastPage" pill class="bg-transparent " :class="isDark ? 'text-white' : 'text-dark'">{{
+            $t('Last')
+          }}</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -772,11 +773,13 @@ export default {
       } else if (this.filterTermDeck == 1000) {
         return this.filterType.filter(
           card =>
-            card.cardSetId == '1525' ||
-            card.cardSetId == '1637' ||
-            card.cardSetId == '1466' ||
-            card.cardSetId == '1443' ||
-            card.cardSetId == '1414'
+            card.cardSetId == '1637' || // core
+            card.cardSetId == '1466' || // Darkmoon
+            card.cardSetId == '1443' || // Scholomance
+            card.cardSetId == '1414' ||   // outland
+            card.cardSetId == '1525' ||  //Barrens
+            card.cardSetId == '1578' || // Stormwind
+            card.cardSetId == '1626'  //Alterac Valley
         );
       } else return this.filterType.filter(card => card.cardSetId == this.filterTermDeck);
     },
@@ -791,27 +794,13 @@ export default {
       sets: state => state.axiosFetch.sets,
       heroes: state => state.axiosFetch.heroes,
       minionTypes: state => state.axiosFetch.minionTypes,
-      types: state => state.axiosFetch.types.filter(type => type.id != 3 && type.id != 10),
+      types: state => state.axiosFetch.types.filter(type => type.id != 10),
       rarities: state => state.axiosFetch.rarities,
       theme: state => state.theme
     }),
     arenaCards() {
       return this.cards
         .filter(card => card.cardSetId != 'lol')
-        .sort((a, b) => {
-          return a.manaCost - b.manaCost;
-        });
-    },
-    standarCards() {
-      return this.cards
-        .filter(
-          card =>
-            card.cardSetId == '1525' ||
-            card.cardSetId == '1637' ||
-            card.cardSetId == '1466' ||
-            card.cardSetId == '1443' ||
-            card.cardSetId == '1414'
-        )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;
         });
@@ -825,8 +814,11 @@ export default {
     totalMinios() {
       return this.filterDeck.filter(card => card.cardTypeId == 4);
     },
+    totalHeroes() {
+      return this.filterDeck.filter(card => card.cardTypeId == 3);
+    },
     numberOfFilteredCards() {
-      return this.totalMinios.length + this.totalSpells.length + this.totalWeapons.length;
+      return this.filterDeck.length;
     },
     totalBeasts() {
       return this.filterDeck.filter(card => card.minionTypeId == 20);

@@ -6,7 +6,7 @@
       <br />
       <button class="bg-transparent" type="submit" @click.prevent="get">{{ $t('button3') }}</button>
     </form>
-    <br />
+    <br />    
 
     <b-container fluid>
       <b-row>
@@ -656,7 +656,7 @@ export default {
       return require('../assets/images/napo-dual1.jpg');
     },
     img17() {
-      return require('../assets/images/napodh1.png');
+      return require('../assets/images/napodh1.jpg');
     }
   }
 };

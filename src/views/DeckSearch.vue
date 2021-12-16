@@ -213,7 +213,6 @@
           />
         </b-col>
         <b-col>
-          <b-col>
           <TwelveWins
             heroClass="Demonhunter"
             title="Demonhunter"
@@ -225,7 +224,22 @@
             :photoUrl="img17"
           />
         </b-col>
+        <b-col>
+          <TwelveWins
+            heroClass="Warlock"
+            title="Warlock"
+            date="15 Dec 2021"
+            text="It's the Key of the master"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAf0GGLi0BMukBJagBOegBJ6gBPvOA8+kBOagBOCkBNSgBNbOA5ugBIfUA/3QAtjlAq2RBLzQA47UA5CfBKGhA4zUA/bdA6ifBPunAwPy0AKhjQTXpAQA`"
+            :photoUrl="img18"
+          />
         </b-col>
+      </b-row>
+      <b-row>
+        <b-col></b-col>
+        <b-col></b-col>
         <b-col></b-col>
       </b-row>
       <b-row>
@@ -657,6 +671,9 @@ export default {
     },
     img17() {
       return require('../assets/images/napodh1.jpg');
+    },
+    img18() {
+      return require('../assets/images/napo-warlock1.jpg');
     }
   }
 };

@@ -238,8 +238,30 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col></b-col>
-        <b-col></b-col>
+        <b-col>
+          <TwelveWins
+            heroClass="Warlock"
+            title="Warlock"
+            date="16 Dec 2021"
+            text="The new Lord in town"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAf0GGPGkBPb9AuigBPqkA8zSA8ykBM8W4qIEzdID/tEDh+gCqZEErJEErMsDgaAE8qUDiNICjtQD+/4C3KQE28wD5KQErNQD26QEA7q0BK2RBIKgBAA=`"
+            :photoUrl="img18"
+          />
+        </b-col>
+        <b-col>
+          <TwelveWins
+            heroClass="Demonhunter"
+            title="Warlock"
+            date="30 Jan 2022"
+            text="3 Dragons for the win"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAea5AxbSnwSC0APW0QPLpATJnwSdoASkoASEqAOhjQSDnwTPpATR9wPezgOboASH1APRpATp0gPN0wKQ9gKljQSaoASwigQE+84D0c0DjNQDrNQDAA==`"
+            :photoUrl="img20"
+          />
+        </b-col>
         <b-col></b-col>
       </b-row>
       <b-row>
@@ -674,6 +696,12 @@ export default {
     },
     img18() {
       return require('../assets/images/napo-warlock1.jpg');
+    },
+    img19() {
+      return require('../assets/images/warlock-lord1.jpg');
+    },
+    img20() {
+      return require('../assets/images/deminhunter_napo_2.jpg');
     }
   }
 };

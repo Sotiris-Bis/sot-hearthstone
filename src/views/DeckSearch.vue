@@ -253,7 +253,7 @@
         <b-col>
           <TwelveWins
             heroClass="Demonhunter"
-            title="Warlock"
+            title="Demonhunter"
             date="30 Jan 2022"
             text="3 Dragons for the win"
             @clicked="getMyDeck"

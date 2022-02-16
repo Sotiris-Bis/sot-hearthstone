@@ -8,7 +8,6 @@ import AllCards from '../views/AllCards.vue';
 import NotFound from '../components/NotFound.vue';
 import Error from '../views/Error.vue';
 import Battlegrounds from '../views/Battlegrounds.vue';
-
 Vue.use(VueRouter);
 
 const routes = [

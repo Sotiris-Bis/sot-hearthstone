@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <b-container fluid>
-    <!--  <b-row>
+      <!--  <b-row>
         <b-col>
           <h2 class="text-success font-italic">Hallow’s End Dual-Class Arena event</h2>
         </b-col>
@@ -26,10 +26,12 @@
             tabindex="0"
             v-model="filterTermHero"
             id="filterTermHero"
-            class="bg-transparent maxWidth150"
+            class="maxWidth150 sel"
             @change="thisShouldTriggerRecompute()"
           >
-            <option selected :value="null">{{ $t('Any') }}</option>
+            <option selected :value="null">
+              {{ $t('Any') }}
+            </option>
             <option v-for="option in heroes" :key="option.id" :value="option.id">
               {{ option.name }}
             </option>
@@ -41,7 +43,7 @@
             tabindex="0"
             v-model="filterTermManaCost"
             id="filterTermManaCost"
-            class="bg-transparent maxWidth75"
+            class="sel maxWidth75"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">{{ $t('Any') }}</option>
@@ -55,7 +57,7 @@
           <b-form-select
             v-model="filterTermMinionType"
             id="filterTermMinionType"
-            class="bg-transparent maxWidth100"
+            class="sel maxWidth100"
             @change="thisShouldTriggerRecompute()"
             tabindex="0"
           >
@@ -71,7 +73,7 @@
             tabindex="0"
             v-model="filterTermRarity"
             id="filterTermRarity"
-            class="bg-transparent maxWidth100"
+            class="sel maxWidth100"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">{{ $t('Any') }}</option>
@@ -86,7 +88,7 @@
             tabindex="0"
             v-model="filterTermType"
             id="filterTermType"
-            class="bg-transparent maxWidth100"
+            class="sel maxWidth100"
             @change="thisShouldTriggerRecompute()"
           >
             <option selected :value="null">{{ $t('Any') }}</option>
@@ -147,7 +149,8 @@
         </b-badge>
         <hr />
         {{ $t('Minion') }}: <b>{{ totalMinios.length }}</b> {{ $t('Spell') }}: <b>{{ totalSpells.length }}</b> {{ $t('Weapon') }}:
-        <b>{{ totalWeapons.length }}</b> {{ $t('Hero') }}: <b>{{ totalHeroes.length }}</b>  of <b>{{ numberOfFilteredCards }} </b>{{ $t('Cards') }}.
+        <b>{{ totalWeapons.length }}</b> {{ $t('Hero') }}: <b>{{ totalHeroes.length }}</b> of <b>{{ numberOfFilteredCards }} </b
+        >{{ $t('Cards') }}.
         <hr />
         {{ $t('Beast') }}: <b>{{ totalBeasts.length }}</b> | {{ $t('Murloc') }}: <b>{{ totalMurlocs.length }}</b> | {{ $t('Elemental') }}:
         <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
@@ -491,9 +494,7 @@ export default {
         { value: 7, text: 7 },
         { value: 8, text: 8 },
         { value: 9, text: 9 },
-        { value: 10, text: 10 },
-        { value: 11, text: 11 },
-        { value: 12, text: 12 }
+        { value: 10, text: '10+' }
       ],
       emptyCardObject: {
         id: 0,
@@ -561,7 +562,7 @@ export default {
       this.focusOnTopOfPage();
     },
     lastPage() {
-      this.currentPage = this.arenaCards.length / this.perPage + 1;
+      this.currentPage = this.arenaCards.length / this.perPage;
       this.focusOnTopOfPage();
     },
     onFiltered(filteredItems) {
@@ -673,7 +674,6 @@ export default {
     },
     //
     clearFilterHero() {
-      alert('bske');
       this.filterTermHero == null;
     }
   },
@@ -708,6 +708,8 @@ export default {
       this.forceRecomputeCounter;
       if (this.filterTermManaCost == null) {
         return this.filterName;
+      } else if (this.filterTermManaCost == 10) {
+        return this.filterName.filter(card => card.manaCost >= this.filterTermManaCost);
       } else {
         return this.filterName.filter(card => card.manaCost == this.filterTermManaCost);
       }
@@ -766,10 +768,10 @@ export default {
             // // united 1578
             // // rumble 1129
 
-            // card.cardSetId == 1466 ||
-            // card.cardSetId == 1525 ||
-            // card.cardSetId == 1637 ||
-            // card.cardSetId == 1125 ||
+            card.cardSetId == 1347 || // Descent of Dragons
+            card.cardSetId == 25 || // mean streats
+            card.cardSetId == 23 || // One Night in Karazhan
+            card.cardSetId == 14 || // Blackrock Mountain
             // card.cardSetId == 1158 ||
             // card.cardSetId == 1578 ||
             // card.cardSetId == 1129
@@ -779,16 +781,16 @@ export default {
             // card.cardSetId == 1414 || // "Ashes of Outland"
             // card.cardSetId == 1130 || // "Rise of Shadows"
             // card.cardSetId == 1001 || // "Knights of the Frozen Throne"
-            // card.cardSetId == 27 || // "Journey to Un’Goro"
+            card.cardSetId == 27 || // "Journey to Un’Goro"
             // card.cardSetId == 25 // Mean Streets of Gadgetzan
 
-            card.cardSetId == 1626 ||  //fractured
-            card.cardSetId == 1158 || //saviors
-            card.cardSetId == 1004 || //kobolts
-            card.cardSetId == 20 || //league
-            card.cardSetId == 1443 || //scholomance
-            card.cardSetId == 1127 || //the boomsday
-            card.cardSetId == 1637  //core
+            card.cardSetId == 1626 || //fractured
+            //card.cardSetId == 1158 || //saviors
+            //card.cardSetId == 1004 || //kobolts
+            //card.cardSetId == 20 || //league
+            // card.cardSetId == 1443 || //scholomance
+            // card.cardSetId == 1127 || //the boomsday
+            card.cardSetId == 1637 //core
         )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;
@@ -877,5 +879,12 @@ ul li {
 .box {
   width: 175px;
   height: 80px;
+}
+.sel {
+  appearance: none;
+  background-color: transparent;
+}
+.sel::-ms-expand {
+  display: none;
 }
 </style>

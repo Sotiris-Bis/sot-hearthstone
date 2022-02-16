@@ -6,7 +6,7 @@
       <br />
       <button class="bg-transparent" type="submit" @click.prevent="get">{{ $t('button3') }}</button>
     </form>
-    <br />    
+    <br />
 
     <b-container fluid>
       <b-row>
@@ -201,7 +201,7 @@
       </b-row>
       <b-row>
         <b-col>
-         <TwelveWins
+          <TwelveWins
             heroClass="Warrior-Paladin"
             title="Warrior Paladin"
             date="04th Dec 2021"
@@ -257,13 +257,40 @@
             date="30 Jan 2022"
             text="3 Dragons for the win"
             @clicked="getMyDeck"
-            :loaded="loaded"
             deckCode="`AAEBAea5AxbSnwSC0APW0QPLpATJnwSdoASkoASEqAOhjQSDnwTPpATR9wPezgOboASH1APRpATp0gPN0wKQ9gKljQSaoASwigQE+84D0c0DjNQDrNQDAA==`"
             :photoUrl="img20"
           />
         </b-col>
+        <b-col>
+           <TwelveWins
+            heroClass="Hunter"
+            title="Hunter"
+            date="06th Feb 2022"
+            text="Your scraps will feed the beasts"
+            @clicked="getDeckWithTriples"
+            :loaded="loaded"
+            :deckCode="array7"
+            :photoUrl="img21"
+          />
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <TwelveWins
+            heroClass="Demonhunter"
+            title="Demonhunter"
+            date="11 Feb 2022"
+            text="Fast whipping"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAea5Axr9pwP2/QLhzgOWoASLqQO2nwTVFvvOA7q0BM+kBOygBIfoApKgBPKlA5ugBPiUBNHNA+nSA/mnA5GNBNqkBNTNA4GoA4CFBKzUA7KKBALJnwSO1AMA`"
+            :photoUrl="img22"
+          />
+        </b-col>
+        <b-col></b-col>
         <b-col></b-col>
       </b-row>
+
       <b-row>
         <hr />
       </b-row>
@@ -534,6 +561,38 @@ export default {
         64716,
         66864,
         41425
+      ],
+      array7:[
+        59705,
+        59029,
+        45707,
+        69545,
+        67574,
+        67574,
+        67574,
+        47840,
+        70220,
+        69604,
+        69604,
+        59259,
+        59914,
+        48529,
+        59646,
+        43523,
+        69672,
+        70226,
+        46118,
+        42438,
+        48508,
+        70225,
+        59452,
+        67237,
+        59027,
+        45837,
+        69667,
+        58971,
+        47979,
+        53926
       ]
     };
   },
@@ -702,6 +761,12 @@ export default {
     },
     img20() {
       return require('../assets/images/deminhunter_napo_2.jpg');
+    },
+    img21() {
+      return require('../assets/images/Hunter1.jpg');
+    },
+    img22() {
+      return require('../assets/images/bouki.jpg');
     }
   }
 };

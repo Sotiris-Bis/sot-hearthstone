@@ -287,7 +287,18 @@
             :photoUrl="img22"
           />
         </b-col>
-        <b-col></b-col>
+        <b-col>
+           <TwelveWins
+            heroClass="Paladin"
+            title="Paladin"
+            date="02 Mar 2022"
+            text="Justice Demands Retribution"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAZ8FHOufBNWgBJq8Ave8Ap6gBNWsBKK3A5CuA6HCAu6fBJyfBPewA6afBKS2At+kBJ2fBIiuA/sR2qQEpY0E/L0CmqAE57oC9aQEqsEC9qQEsK0DtIoEAaGNBAA=`"
+            :photoUrl="img23"
+          />
+        </b-col>
         <b-col></b-col>
       </b-row>
 
@@ -767,6 +778,9 @@ export default {
     },
     img22() {
       return require('../assets/images/bouki.jpg');
+    },
+    img23() {
+      return require('../assets/images/napo-pala1.jpg');
     }
   }
 };

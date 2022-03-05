@@ -299,9 +299,24 @@
             :photoUrl="img23"
           />
         </b-col>
-        <b-col></b-col>
+        <b-col>
+          <TwelveWins
+            heroClass="Druid"
+            title="Druid"
+            date="04th Mar 2022"
+            text="Nature will Rise against you"
+            @clicked="getDeckWithTriples"
+            :loaded="loaded"
+            :deckCode="array8"
+            :photoUrl="img23"
+          />
+        </b-col>
       </b-row>
-
+      <b-row>
+      <b-col></b-col>
+      <b-col></b-col>
+      <b-col></b-col>
+      </b-row>
       <b-row>
         <hr />
       </b-row>
@@ -573,7 +588,7 @@ export default {
         66864,
         41425
       ],
-      array7:[
+      array7: [
         59705,
         59029,
         45707,
@@ -604,6 +619,38 @@ export default {
         58971,
         47979,
         53926
+      ],
+      array8: [
+        41111,
+        55975,
+        55208,
+        69711,
+        55436,
+        55421,
+        2408,
+        73528,
+        55431,
+        40289,
+        40611,
+        41241,
+        70225,
+        70292,
+        2409,
+        71241,
+        71241,
+        71241,
+        55425,
+        70234,
+        40742,
+        71226,
+        55037,
+        55429,
+        69596,
+        69596,
+        70247,
+        71247,
+        2261,
+        69726
       ]
     };
   },
@@ -781,6 +828,9 @@ export default {
     },
     img23() {
       return require('../assets/images/napo-pala1.jpg');
+    },
+    img24() {
+      return require('../assets/images/napo-druid1.jpg');
     }
   }
 };

@@ -156,7 +156,7 @@
         <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
         <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}: <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}:
         <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> | {{ $t('Quilboar') }}:
-        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
+        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b> | {{ $t('Naga') }}:<b> {{ totalNaga.length }}</b>
       </b-container>
       <hr />
     </b-container>
@@ -647,6 +647,8 @@ export default {
           return this.$t('All');
         case 43:
           return this.$t('Quilboar');
+        case 92:
+          return this.$t('Naga');
         default:
           return '';
       }
@@ -768,10 +770,10 @@ export default {
             // // united 1578
             // // rumble 1129
 
-            card.cardSetId == 1347 || // Descent of Dragons
-            card.cardSetId == 25 || // mean streats
-            card.cardSetId == 23 || // One Night in Karazhan
-            card.cardSetId == 14 || // Blackrock Mountain
+            //card.cardSetId == 1347 || // Descent of Dragons
+            //card.cardSetId == 25 || // mean streats
+            //card.cardSetId == 23 || // One Night in Karazhan
+            //card.cardSetId == 14 || // Blackrock Mountain
             // card.cardSetId == 1158 ||
             // card.cardSetId == 1578 ||
             // card.cardSetId == 1129
@@ -781,16 +783,26 @@ export default {
             // card.cardSetId == 1414 || // "Ashes of Outland"
             // card.cardSetId == 1130 || // "Rise of Shadows"
             // card.cardSetId == 1001 || // "Knights of the Frozen Throne"
-            card.cardSetId == 27 || // "Journey to Un’Goro"
+            //card.cardSetId == 27 || // "Journey to Un’Goro"
             // card.cardSetId == 25 // Mean Streets of Gadgetzan
 
-            card.cardSetId == 1626 || //fractured
+           // card.cardSetId == 1626 || //fractured
             //card.cardSetId == 1158 || //saviors
             //card.cardSetId == 1004 || //kobolts
             //card.cardSetId == 20 || //league
             // card.cardSetId == 1443 || //scholomance
             // card.cardSetId == 1127 || //the boomsday
-            card.cardSetId == 1637 //core
+            //card.cardSetId == 1637 //core
+
+            card.cardSetId == 1637 || //core
+            card.cardSetId == 20 || // league of explores
+            card.cardSetId == 21 || // Whisper of the old gods
+            card.cardSetId == 15 || // The grand Tournament
+            card.cardSetId == 1578 || // United in Stormwind 
+            card.cardSetId == 1626 || //fractured
+            card.cardSetId == 1658  // Voyage to the Sunken City
+
+
         )
         .sort((a, b) => {
           return a.manaCost - b.manaCost;
@@ -841,6 +853,9 @@ export default {
     },
     totalQuilboars() {
       return this.filterType.filter(card => card.minionTypeId == 43);
+    },
+    totalNaga() {
+      return this.filterType.filter(card => card.minionTypeId == 92);
     }
   }
 };

@@ -166,7 +166,7 @@
         <b>{{ totalElementals.length }}</b> | {{ $t('Mech') }}:<b> {{ totalMechs.length }}</b> | {{ $t('Demon') }}:
         <b>{{ totalDemons.length }}</b> | {{ $t('Pirate') }}: <b> {{ totalPirates.length }}</b> | {{ $t('Totem') }}:
         <b>{{ totalTotems.length }}</b> | {{ $t('Dragon') }}: <b> {{ totalDragons.length }}</b> | {{ $t('Quilboar') }}:
-        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b>
+        <b> {{ totalQuilboars.length }}</b> | {{ $t('All') }}:<b> {{ totalAll.length }}</b> | {{ $t('Naga') }}:<b> {{ totalNaga.length }}</b>
       </div>
       <hr />
     </b-container>
@@ -687,6 +687,8 @@ export default {
           return this.$t('All');
         case 43:
           return this.$t('Quilboar');
+        case 92:
+          return this.$t('Naga');
         default:
           return '';
       }
@@ -773,13 +775,22 @@ export default {
       } else if (this.filterTermDeck == 1000) {
         return this.filterType.filter(
           card =>
-            card.cardSetId == '1637' || // core
-            card.cardSetId == '1466' || // Darkmoon
-            card.cardSetId == '1443' || // Scholomance
-            card.cardSetId == '1414' ||   // outland
-            card.cardSetId == '1525' ||  //Barrens
-            card.cardSetId == '1578' || // Stormwind
-            card.cardSetId == '1626'  //Alterac Valley
+            // card.cardSetId == '1637' || // core
+            // card.cardSetId == '1466' || // Darkmoon
+            // card.cardSetId == '1443' || // Scholomance
+            // card.cardSetId == '1414' ||   // outland
+            // card.cardSetId == '1525' ||  //Barrens
+            // card.cardSetId == '1578' || // Stormwind
+            // card.cardSetId == '1626'  //Alterac Valley
+
+             card.cardSetId == 1637 ||
+             card.cardSetId == 1658 ||
+             card.cardSetId == 1626 ||
+             card.cardSetId == 1578 ||
+             card.cardSetId == 1525 ||
+             card.cardSetId == 1466 ||
+             card.cardSetId == 1443||
+             card.cardSetId == 1414
         );
       } else return this.filterType.filter(card => card.cardSetId == this.filterTermDeck);
     },
@@ -792,6 +803,7 @@ export default {
     ...mapState({
       cards: state => state.axiosFetch.cards,
       sets: state => state.axiosFetch.sets,
+      standarCards: state => state.axiosFetch.standarCards,
       heroes: state => state.axiosFetch.heroes,
       minionTypes: state => state.axiosFetch.minionTypes,
       types: state => state.axiosFetch.types.filter(type => type.id != 10),
@@ -849,6 +861,9 @@ export default {
     },
     totalQuilboars() {
       return this.filterDeck.filter(card => card.minionTypeId == 43);
+    },
+    totalNaga() {
+      return this.filterDeck.filter(card => card.minionTypeId == 92);
     }
   }
 };

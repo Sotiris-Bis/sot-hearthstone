@@ -82,7 +82,7 @@ export default {
             sets.push({ value: res.data[set].id, text: res.data[set].name });
           }
           commit('SET_SETS', sets);
-
+          //console.log(sets)
           for (let set = 0; set <= res.data.length - 1; set++) {
             axios
               .get(
@@ -99,7 +99,7 @@ export default {
               });
           }
 
-          const standarSets = [1525, 1637, 1466, 1443, 1414];
+          const standarSets = [1637, 1658, 1626, 1578, 1525, 1466, 1443, 1414 ];
           for (let i = 0; i <= standarSets.length; i++) {
             axios
               .get(`https://eu.api.blizzard.com/hearthstone/cards?locale=${lang}&set=${standarSets[i]}&pageSize=500&access_token=${token}`)
@@ -113,6 +113,7 @@ export default {
           axios.get(`https://eu.api.blizzard.com/hearthstone/metadata/minionTypes?locale=${lang}&access_token=${token}`).then(res => {
             let filteredMinionTypes = res.data.filter(card => card.gameModes != 7);
             commit('SET_MINION_TYPES', filteredMinionTypes);
+            //console.log(filteredMinionTypes)
           });
         })
         .then(()=>{

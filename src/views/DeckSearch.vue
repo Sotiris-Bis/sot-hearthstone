@@ -308,13 +308,35 @@
             @clicked="getDeckWithTriples"
             :loaded="loaded"
             :deckCode="array8"
-            :photoUrl="img23"
+            :photoUrl="img24"
           />
         </b-col>
       </b-row>
       <b-row>
-      <b-col></b-col>
-      <b-col></b-col>
+      <b-col>
+        <TwelveWins
+            heroClass="Warlock"
+            title="Warlock"
+            date="06 Mar 2022"
+            text="The Lord is Back"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAf0GFLGfBOigBPGkBKSgBPywA/W/AuusA+CkBKmRBJugBJ+gBIISrMIC97AD17sCgbEDwsMCkJ8E3bwCoMECBZaxA+WsA7qsBIKgBK6RBAA=`"
+            :photoUrl="img25"
+          />
+      </b-col>
+      <b-col>
+         <TwelveWins
+            heroClass="Druid"
+            title="Druid"
+            date="29 Mar 2022"
+            text="I am the Brood mother!"
+            @clicked="getMyDeck"
+            :loaded="loaded"
+            deckCode="`AAEBAZICGLegBN7EAqGgBIefBKK3A7i+BLWgBNygBIeNBKnCArusBJroA8qsBK6gBNekBIGxA9nCAqWNBPy9AqqxA6m+Au6wA9ikBKWtBAOhjQTSpASwrQMA`"
+            :photoUrl="img26"
+          />
+      </b-col>
       <b-col></b-col>
       </b-row>
       <b-row>
@@ -831,6 +853,12 @@ export default {
     },
     img24() {
       return require('../assets/images/napo-druid1.jpg');
+    },
+    img25() {
+      return require('../assets/images/napo-warl1.jpg');
+    },
+    img26() {
+      return require('../assets/images/napo_druid1.jpg');
     }
   }
 };

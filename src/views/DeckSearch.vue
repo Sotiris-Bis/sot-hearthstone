@@ -262,7 +262,7 @@
           />
         </b-col>
         <b-col>
-           <TwelveWins
+          <TwelveWins
             heroClass="Hunter"
             title="Hunter"
             date="06th Feb 2022"
@@ -288,7 +288,7 @@
           />
         </b-col>
         <b-col>
-           <TwelveWins
+          <TwelveWins
             heroClass="Paladin"
             title="Paladin"
             date="02 Mar 2022"
@@ -313,20 +313,20 @@
         </b-col>
       </b-row>
       <b-row>
-      <b-col>
-        <TwelveWins
+        <b-col>
+          <TwelveWins
             heroClass="Warlock"
             title="Warlock"
             date="06 Mar 2022"
             text="The Lord is Back"
-            @clicked="getMyDeck"
+            @clicked="getDeckWithTriples"
             :loaded="loaded"
-            deckCode="`AAEBAf0GFLGfBOigBPGkBKSgBPywA/W/AuusA+CkBKmRBJugBJ+gBIISrMIC97AD17sCgbEDwsMCkJ8E3bwCoMECBZaxA+WsA7qsBIKgBK6RBAA=`"
+            :deckCode="array8"
             :photoUrl="img25"
           />
-      </b-col>
-      <b-col>
-         <TwelveWins
+        </b-col>
+        <b-col>
+          <TwelveWins
             heroClass="Druid"
             title="Druid"
             date="29 Mar 2022"
@@ -336,8 +336,37 @@
             deckCode="`AAEBAZICGLegBN7EAqGgBIefBKK3A7i+BLWgBNygBIeNBKnCArusBJroA8qsBK6gBNekBIGxA9nCAqWNBPy9AqqxA6m+Au6wA9ikBKWtBAOhjQTSpASwrQMA`"
             :photoUrl="img26"
           />
-      </b-col>
-      <b-col></b-col>
+        </b-col>
+        <b-col>
+          <TwelveWins
+            heroClass="Hunter"
+            title="Hunter"
+            date="01 Jul 2022"
+            text="lololololo"
+            @clicked="getDeckWithWilds"
+            :loaded="loaded"
+            :deckCode="hunterArr"
+            :photoUrl="img27"
+            :secondaryArray="hunterArr2"
+          />
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <TwelveWins
+            heroClass="Mage"
+            title="Mage"
+            date="03 Jul 2022"
+            text="lololololo"
+            @clicked="getDeckWithWilds"
+            :loaded="loaded"
+            :deckCode="mageArr"
+            :photoUrl="img28"
+            :secondaryArray="mageArr2"
+          />
+        </b-col>
+        <b-col></b-col>
+        <b-col></b-col>
       </b-row>
       <b-row>
         <hr />
@@ -351,7 +380,9 @@
             <b-container fluid class="p-4">
               <b-img v-for="(card, index) in sortFunc()" :key="index" :src="card.image" :alt="card.name" height="414" width="300" />
             </b-container>
-
+            <b-container fluid class="p-4" v-if="extraCards">
+              <b-img v-for="(card, index) in extraCards" :key="index" :src="card" :alt="card" height="414" width="300" class="extra"/>
+            </b-container>
             <b-row>
               <b-button class="bg-transparent" :class="isDark ? 'text-white' : 'text-dark'" @click="close"> Hide Deck </b-button>
             </b-row>
@@ -386,6 +417,7 @@ export default {
       format: '',
       heroClass: '',
       loaded: false,
+      extraCards: [],
       array1: [
         59394,
         61127,
@@ -673,9 +705,79 @@ export default {
         71247,
         2261,
         69726
+      ],
+      hunterArr: [
+        65044,
+        65044,
+        76318,
+        72248,
+        67574,
+        47840,
+        62703,
+        69691,
+        69712,
+        64631,
+        76299,
+        69605,
+        62481,
+        69657,
+        76225,
+        72583,
+        72896,
+        48536,
+        72598,
+        48890,
+        55417,
+        55399,
+        71232,
+        54935,
+        75580,
+        70235,
+        66872
+      ],
+      hunterArr2: [
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/Temporal-Anomaly.png',
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/timeway-wanderer.png',
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/wildlands-adventurer.png'
+      ],
+      mageArr: [
+        69700,
+        69700,
+        72417,
+        72417,
+        67871,
+        67873,
+        67873,
+        67233,
+        72924,
+        63553,
+        63553,
+        72586,
+        64720,
+        71701,
+        85810,
+        62745,
+        65683,
+        55415,
+        55415,
+        63059,
+        76324,
+        55276,
+        64728,
+        63520,
+        55406,
+        63070,
+        76322
+      ],
+      mageArr2: [
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/Cavern-Dreamer.png',
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/Chromie.png',
+        'https://cdn.hearthstonetopdecks.com/wp-content/uploads/2018/06/timeway-wanderer.png',
+
       ]
     };
   },
+  mounted() {},
   methods: {
     focusOnCardList() {
       this.$refs.trolompoukis.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
@@ -687,30 +789,31 @@ export default {
       this.loaded = !this.loaded;
       this.focusOnTopOfPage();
     },
-    get() {
-      const token = this.$store.state.oauth.accessToken;
-      const code = this.search;
-      if (code != '') {
-        axios
-          .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=en_US&code=${code}&access_token=${token}`)
-          .then(res => {
-            this.loaded = !this.loaded;
-            this.cards = res.data.cards;
-            this.deckCode = res.data.deckCode;
-            this.hero = res.data.hero;
-            this.format = res.data.format;
-          })
-          .catch(error => {
-            const notification = {
-              type: 'error',
-              message: 'There was an error retrieving your deck ' + error.message
-            };
-            this.$store.dispatch('addNotification', notification, { root: true });
-            throw error;
-          });
-      }
-    },
+    // get() {
+    //   const token = this.$store.state.oauth.accessToken;
+    //   const code = this.search;
+    //   if (code != '') {
+    //     axios
+    //       .get(`https://eu.api.blizzard.com/hearthstone/deck?locale=en_US&code=${code}&access_token=${token}`)
+    //       .then(res => {
+    //         this.loaded = !this.loaded;
+    //         this.cards = res.data.cards;
+    //         this.deckCode = res.data.deckCode;
+    //         this.hero = res.data.hero;
+    //         this.format = res.data.format;
+    //       })
+    //       .catch(error => {
+    //         const notification = {
+    //           type: 'error',
+    //           message: 'There was an error retrieving your deck ' + error.message
+    //         };
+    //         this.$store.dispatch('addNotification', notification, { root: true });
+    //         throw error;
+    //       });
+    //   }
+    // },
     getMyDeck(deck) {
+      this.extraCards = [];
       const token = this.$store.state.oauth.accessToken;
       const lang = this.$store.state.lang;
       axios
@@ -740,6 +843,7 @@ export default {
       });
     },
     getDeckWithTriples(deck) {
+      this.extraCards = [];
       const token = this.$store.state.oauth.accessToken;
       const lang = this.$store.state.lang;
       let deckCards = [];
@@ -773,7 +877,39 @@ export default {
       if (this.loaded == false) {
         this.focusOnCardList();
       } else this.focusOnTopOfPage();
-    }
+    },
+    getDeckWithWilds(deck, secondaryArray) {
+      const token = this.$store.state.oauth.accessToken;
+      const lang = this.$store.state.lang;
+      let deckCards = [];
+      for (let i = 0; i <= deck.length - 1; i++) {
+        axios
+          .get(`https://us.api.blizzard.com/hearthstone/cards/${deck[i]}?locale=${lang}&access_token=${token}`)
+          .then(res => {
+            deckCards.push(res.data);
+          })
+          .catch(error => {
+            const notification = {
+              type: 'error',
+              message: 'There was an error retrieving your deck ' + error.message
+            };
+            this.$store.dispatch('addNotification', notification, { root: true });
+            throw error;
+          })
+          .then(() => {
+            this.focusOnCardList();
+          });
+      }
+      this.extraCards = secondaryArray
+      this.loaded = !this.loaded;
+      this.cards = deckCards;
+      this.deckCode = 'No cade due to triplets';
+      this.hero.name = this.heroClass;
+      this.format = 'Wild';
+      if (this.loaded == false) {
+        this.focusOnCardList();
+      } else this.focusOnTopOfPage();
+    },
   },
   computed: {
     ...mapState({ theme: state => state.theme }),
@@ -859,6 +995,12 @@ export default {
     },
     img26() {
       return require('../assets/images/napo_druid1.jpg');
+    },
+    img27() {
+      return require('../assets/images/hunter-1.jpg');
+    },
+    img28() {
+      return require('../assets/images/mage-1.jpg');
     }
   }
 };
@@ -866,5 +1008,9 @@ export default {
 <style scoped>
 .zoom:hover {
   transform: scale(1.5);
+}
+.extra{
+  border: 1px solid red;
+  margin: 1px;
 }
 </style>

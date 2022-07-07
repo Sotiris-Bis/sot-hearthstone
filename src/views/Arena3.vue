@@ -794,13 +794,23 @@ export default {
             // card.cardSetId == 1127 || //the boomsday
             //card.cardSetId == 1637 //core
 
+            // card.cardSetId == 1637 || //core
+            // card.cardSetId == 20 || // league of explores
+            // card.cardSetId == 21 || // Whisper of the old gods
+            // card.cardSetId == 15 || // The grand Tournament
+            // card.cardSetId == 1578 || // United in Stormwind 
+            // card.cardSetId == 1626 || //fractured
+            // card.cardSetId == 1658  // Voyage to the Sunken City
+
             card.cardSetId == 1637 || //core
-            card.cardSetId == 20 || // league of explores
-            card.cardSetId == 21 || // Whisper of the old gods
-            card.cardSetId == 15 || // The grand Tournament
+            card.cardSetId == 1127 || //the boomsday
+            card.cardSetId == 1347 || // Descent of Dragons
+            card.cardSetId == 1525 || // forged
             card.cardSetId == 1578 || // United in Stormwind 
             card.cardSetId == 1626 || //fractured
             card.cardSetId == 1658  // Voyage to the Sunken City
+
+
 
 
         )

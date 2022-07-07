@@ -12,7 +12,7 @@
       </b-card-body>
 
       <b-card-body>
-        <button class="bg-transparent" @click="getMyDeck(deckCode)">
+        <button class="bg-transparent" @click="getMyDeck(deckCode, secondaryArray)">
           <span v-if="!loaded"> {{ $t('button1') }}</span>
           <span v-else> {{ $t('button2') }}</span>
         </button>
@@ -62,17 +62,21 @@ export default {
     },
     loaded: {
       type: Boolean,
-      required: true
+      required: false
     },
     heroIs: {
       type: Boolean,
       required: false
+    },
+    secondaryArray: {
+      type: Array,
+      required: false
     }
   },
   methods: {
-    getMyDeck(deckCode) {
-      this.$emit('clicked', deckCode);
-    }
+    getMyDeck(deckCode, secondaryArray) {
+      this.$emit('clicked', deckCode, secondaryArray);
+    },
   }
 };
 </script>

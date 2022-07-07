@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "build": "sot-hearthstone",
+    "hearthstonaki": "sot-hearthstone"
+  },
+  "targets": {}
+}
